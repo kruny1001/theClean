@@ -13,8 +13,7 @@
 		"npm": ">=1.4.28"
 	},
 	"scripts": {
-		"start": "grunt",
-	  	"postinstall": "bower install"
+		"start": "grunt"
 	},
 	"dependencies": {
 		"express": "~4.10.1",
