@@ -1,0 +1,33 @@
+#list {
+    background-color: rgba(0, 0, 0, 0.2);
+    width: 250px;
+    width: 90%;
+    width: 0;
+    position: relative;
+    display: block;
+    margin-top: 50px;
+}
+
+.tile {
+    display: block;
+    position: absolute;
+    background-color: yellowgreen;
+    color: #3A3A4D;
+    padding: 5px;
+    font-weight: bold;
+}
+
+.layout {
+    color: #efefef;
+    margin-bottom: 15px;
+}
+.layout label {
+    margin-right: 15px;
+    cursor: pointer;
+}
+.layout label:hover {
+    color: yellowgreen;
+}
+.layout input {
+    margin-right: 3px;
+}

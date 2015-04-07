@@ -1,0 +1,115 @@
+<section class="headerEnabled container tc-main-font" data-ng-controller="TheCleanController">
+
+    <div id="text" style="display:block"><h1><strong>The Clean Project</strong></h1></div>
+
+    <div layout="row" layout-sm="column"layout-margin style="font-size:12px;" layout-align="center center">
+        <div flex flex-order="1">
+            <md-button class="md-warn md-raised md-hue-3" ng-click="tcProgress = toggle(tcProgress)"><strong>Progress {{tcProgress}}</strong></md-button>
+        </div>
+        <div flex flex-order="2">
+            <md-button class="md-warn md-raised md-hue-1" ng-click="tcOrder = toggle(tcOrder)"><strong>주문인터페이스 {{tcOrder}}</strong></md-button>
+        </div>
+        <div flex flex-order="3">
+            <md-button class="md-warn md-raised md-hue-2" ng-click="tcStartPage = toggle(tcStartPage)"><strong>시작페이지 {{tcStartPage}}</strong></md-button>
+        </div>
+        <div flex flex-order="4">
+            <md-button  ng-disabled="true" class="md-warn md-raised md-hue-3" ng-click="tcPrice = toggle(tcPrice)"><strong>가격표 {{tcPrice}}</strong></md-button>
+        </div>
+    </div>
+
+    <nvd3 options="options" data="data" ng-show="tcProgress"></nvd3>
+
+    <md-content ng-show="tcStartPage">
+        <iframe height='250' scrolling='no' src='//codepen.io/kruny1001/embed/yyRMZm/?height=206' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='http://codepen.io/kruny1001/pen/yyRMZm/'>yyRMZm</a> by Kevin S (<a href='http://codepen.io/kruny1001'>@kruny1001</a>) on <a href='http://codepen.io'>CodePen</a>.
+        </iframe>
+        <iframe height='250' scrolling='no' src='//codepen.io/kruny1001/embed/LEgpjv/?height=268' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='http://codepen.io/kruny1001/pen/LEgpjv/'>LEgpjv</a> by Kevin S (<a href='http://codepen.io/kruny1001'>@kruny1001</a>) on <a href='http://codepen.io'>CodePen</a>.
+        </iframe>
+        <!--<div style="height:200px; width:200px;">-->
+        <!--<md-icon md-svg-icon="basket"-->
+        <!--ng-style="{color: !font.theme && font.color, 'font-size': '250px', height: '100%', width:'100%'}">-->
+        <!--</md-icon>-->
+        <!--</div>-->
+
+        <div layout="row" layout-sm="column" layout-align="center center">
+            <md-card style="max-width:250px;">
+                <div style="width:80%; margin-left:auto; margin-right:auto;">
+                    <md-icon md-svg-icon="basket"
+                             ng-style="{color: !font.theme && font.color, 'font-size': '250px', height: '100%', width:'100%'}">
+                    </md-icon>
+                </div>
+                <md-card-content style="font-family: 'Hanna', serif;">
+                    <h2>빨래바구니</h2>
+                    <p>
+                        빨래 바구니에 빨랫거리를 담아 봅시다.
+                    </p>
+                </md-card-content>
+            </md-card>
+
+            <md-card style="max-width:250px; ">
+                <div style="width:80%; margin-left:auto; margin-right:auto;">
+                    <md-icon md-svg-icon="drum"
+                             ng-style="{color: !font.theme && font.color, 'font-size': '250px', height: '100%', width:'100%'}">
+                    </md-icon>
+                </div>
+                <md-card-content style="font-family: 'Hanna', serif;">
+                    <h2>드럼세탁기</h2>
+                    <p>
+                        빨래 바구니에 빨랫거리를 담은뒤 세탁기를 돌립니다.
+                    </p>
+                </md-card-content>
+            </md-card>
+            <md-card style="max-width:250px; ">
+                <div style="width:80%; margin-left:auto; margin-right:auto;">
+                    <md-icon md-svg-icon="drum"
+                             ng-style="{color: !font.theme && font.color, 'font-size': '250px', height: '100%', width:'100%'}">
+                    </md-icon>
+                </div>
+                <md-card-content style="font-family: 'Hanna', serif;">
+                    <h2>드럼세탁기</h2>
+                    <p>
+                        빨래 바구니에 빨랫거리를 담은뒤 세탁기를 돌립니다.
+                    </p>
+                </md-card-content>
+            </md-card>
+        </div>
+    </md-content>
+
+
+    <!--<h3><strong>Module Interface</strong></h3>-->
+
+    <!---->
+
+    <!--<h3><strong>User Information</strong></h3>-->
+    <!--<md-button class="md-warn md-raised md-hue-3" style="font-size:12px; margin-bottom: 20px" ng-click="tcUserInfo = toggle(tcUserInfo)"><strong>User Information {{tcUserInfo}}</strong></md-button>-->
+    <!--<div id="tc-user-info" ng-show="tcUserInfo">-->
+        <!--<pre ng-show="authentication.user === ''">-->
+            <!--로그인이 필요 합니다.-->
+        <!--</pre>-->
+        <!--<pre ng-show="authentication.user !== ''">-->
+            <!--Current User ID: {{authentication.user.username}}-->
+            <!--Email:{{authentication.user.email}}-->
+            <!--Roles:{{authentication.user.roles}}-->
+
+            <!--{{authentication}}-->
+        <!--</pre>-->
+    <!--</div>-->
+
+    <tc-order class="tc-order-ui" ng-show="tcOrder" user-info="authentication" ></tc-order>
+
+    <tc-start-page ng-show="tcStartPage"></tc-start-page>
+    <tc-price ng-show="tcPrice"></tc-price>
+
+    <!--<div class="layout">-->
+        <!--<label><input id="mixed" name="layout" type="radio" value="mixed" checked=""/> Mixed Tile Size</label>-->
+        <!--<label><input id="fixed" name="layout" type="radio" value="fixed"/> Fixed Tile Size</label>-->
+        <!--<label><input id="column" name="layout" type="radio" value="column"/> Single Column</label>-->
+    <!--</div>-->
+    <!--<button id="add">ADD TILE</button>-->
+    <!--<div id="list"></div>-->
+
+    <hr/>
+    <div> Footer </div>
+    <!--<md-button class="md-warn" ui-sref="createTheCleanCrud">Create</md-button>-->
+    <md-button class="md-warn" ui-sref="listTheCleanCruds">Order List</md-button>
+    <hr/>
+</section>

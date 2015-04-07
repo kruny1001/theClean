@@ -1,0 +1,84 @@
+<div class="container tc-order-ui" style="border-radius: 30px; border: 5px solid rgb(140, 202, 143); padding: 20px 20px 20px 20px;">
+    <md-tooltip>
+        Dev: tc-order-ui-tpl.html && tc-order-ui-client-directive.js
+    </md-tooltip>
+    <h2>주문하기</h2>
+    <p>사용자가 주문을 하기 위한 Form 입니다. </p>
+
+    <md-content data-ng-show="userInfo.user != ''" class="md-padding" layout="row" layout-sm="column" style="font-size:1.2em">
+        <md-input-container>
+            <label>User Name</label>
+            <input ng-model="userInfo.user.displayName" disabled>
+        </md-input-container>
+        <md-input-container>
+            <label>Email</label>
+            <input ng-model="userInfo.user.email" type="email" disabled>
+        </md-input-container>
+    </md-content>
+    <md-content data-ng-show="userInfo.user == ''" class="md-padding" layout="row" layout-sm="column" style="font-size:1.2em">
+        <h3>You Need to Signin</h3>
+    </md-content>
+
+    <md-content>
+        <form name="userForm" data-ng-submit="create()">
+            <div layout layout-sm="column">
+                <md-input-container flex>
+                    <label>세탁수거</label>
+                    <input type="date" name="orderDate" ng-model="orderDate" disabled>
+                </md-input-container>
+                <md-input-container flex>
+                    <label>세탁도착</label>
+                    <input type="date" name="deliberyDate" ng-model="deliberyDate">
+                </md-input-container>
+            </div>
+            <md-input-container flex>
+                <label>Address</label>
+                <input ng-model="address" name="address" placeholder="주소를 적어 주세요">
+            </md-input-container>
+
+            </md-input-container>
+
+            <div layout layout-sm="column">
+                <md-input-container flex>
+                    <label>세탁수량</label>
+                    <input required type="number" step="any" name="numOrder" ng-model="numOrder" min="1" max="100" ng-change="getTotal()">
+                    <div ng-messages="userForm.numOrder.$error">
+                        <div ng-message="required">You've got to charge something! You can't just <b>give away</b> a Missile Defense System.</div>
+                        <div ng-message="min">You should charge at least $800 an hour. This job is a big deal... if you mess up, everyone dies!</div>
+                        <div ng-message="max">$5,000 an hour? That's a little ridiculous. I doubt event Bill Clinton could afford that.</div>
+                    </div>
+                </md-input-container>
+                <md-input-container flex>
+                    <label>총금</label>
+                    <input required type="number" step="any" name="price" ng-model="price" disabled>
+                    <div ng-messages="userForm.numOrder.$error">
+                        <div ng-message="required">You've got to charge something! You can't just <b>give away</b> a Missile Defense System.</div>
+                        <div ng-message="min">You should charge at least $800 an hour. This job is a big deal... if you mess up, everyone dies!</div>
+                        <div ng-message="max">$5,000 an hour? That's a little ridiculous. I doubt event Bill Clinton could afford that.</div>
+                    </div>
+                </md-input-container>
+            </div>
+
+            <!--<div layout layout-sm="column">-->
+                <!--<md-input-container flex>-->
+                    <!--<label>City</label>-->
+                    <!--<input ng-model="user.city">-->
+                <!--</md-input-container>-->
+                <!--<md-input-container flex>-->
+                    <!--<label>State</label>-->
+                    <!--<input ng-model="user.state">-->
+                <!--</md-input-container>-->
+                <!--<md-input-container flex>-->
+                    <!--<label>Postal Code</label>-->
+                    <!--<input ng-model="user.postalCode">-->
+                <!--</md-input-container>-->
+            <!--</div>-->
+            <md-input-container flex>
+                <label>상세주문요청</label>
+                <textarea ng-model="detailInfo" columns="1" md-maxlength="150" placeholder="추가 주문 사항을 알려 주세요"></textarea>
+            </md-input-container>
+
+            <md-button class="md-raised md-primary" type="submit"> Submit </md-button>
+        </form>
+    </md-content>
+</div>
