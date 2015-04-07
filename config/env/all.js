@@ -58,8 +58,8 @@ module.exports = {
 				'public/lib/moment/min/moment-with-locales.min.js',
 
 				'public/lib/angular-material/angular-material.js',
-				'public/lib/gsap/src/uncompressed/TimelineMax.js',
-				'public/lib/gsap/src/uncompressed/TweenMax.js',
+				'public/lib/gsap/src/minified/TimelineMax.min.js',
+				'public/lib/gsap/src/minified/TweenMax.min.js',
 				'public/lib/angular-aria/angular-aria.js',
 				'public/lib/jquery/dist/jquery.min.js',
 				'public/lib/pixi/bin/pixi.js',
