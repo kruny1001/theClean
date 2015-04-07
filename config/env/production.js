@@ -33,6 +33,7 @@ module.exports = {
 				'public/lib/angular-bootstrap/ui-bootstrap-tpls.min.js',
 
 				'public/lib/moment/min/moment-with-locales.min.js',
+
 				'public/lib/angular-material/angular-material.js',
 				'public/lib/gsap/src/uncompressed/TimelineMax.js',
 				'public/lib/gsap/src/uncompressed/TweenMax.js',

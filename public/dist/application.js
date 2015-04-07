@@ -1158,8 +1158,38 @@ angular.module('the-clean').directive('aniAce',
 				isWebGL: true
 			};
 
+			var aceBallTrailer;
+			var aceBall;
+			var aceCircle1;
+			var aceCircle2;
+			var aceCircleOutline1;
+			var aceCircleOutline2;
+			var aceRectangle;
+			var aceCircle3;
+			var aceCircle4;
+			var aceCircle5;
+			var aceCircle6;
+			var aceCircle7;
+			var aceCircle8;
+			var aceCircle9;
+			var aceLightning1,
+				aceLightning2,
+				aceLightning3,
+				aceLightning4,
+				aceLightning5,
+				aceLightning6,
+				aceLightning7,
+				aceLightning8,
+				aceLightning9,
+				aceTitle;
+
+			var aceAnimationOut;
+
+			var aceAnimationIn;
+
+
+
 			function initBeast(){
-				console.log("initBeast begin");
 				momentGroup = new PIXI.DisplayObjectContainer();
 				stage.addChild(momentGroup);
 				drawBeast();
@@ -1169,17 +1199,6 @@ angular.module('the-clean').directive('aniAce',
 			function hideMoments() {
 				clearTimeout(animationTimer);
 				momentAce.visible = false;
-				//momentAdvantage.visible = false;
-				//momentDoubleFault.visible = false;
-				//momentDeuce.visible = false;
-				//momentBreakPoint.visible = false;
-				//momentMatchPoint.visible = false;
-				//
-				//momentSetPoint.visible = false;
-				//
-				//momentGenericPoint.visible = false;
-				//momentGame.visible = false;
-
 				if (__PE)
 					__PE.reset();
 			}
@@ -1345,7 +1364,7 @@ angular.module('the-clean').directive('aniAce',
 
 					// CREATE SOME RECTANGLES
 					for (var i = 0; i < 3; i++) {
-						var aceRectangle = new PIXI.Graphics();
+						aceRectangle = new PIXI.Graphics();
 						if (matchVizViewConfig.isWebGL) aceRectangle.blendMode = PIXI.blendModes.MULTIPLY;
 						aceRectangle.pivot.x = 2000;
 						aceRectangle.pivot.y = 50;
@@ -1354,26 +1373,6 @@ angular.module('the-clean').directive('aniAce',
 						aceRectArray.push(aceRectangle);
 					}
 
-					 // CREATE SOME EXPLOSION PIECES
-					 for (var i = 0; i < 30; i++) {
-					 var aceParticle = new PIXI.Graphics();
-					 var randomParticleType = generateRandomNumber(0,5);
-
-					 switch (randomParticleType) {
-					 case 0:
-					 aceParticle.lineStyle(2, aceColors[0], 1);
-					 aceParticle.drawCircle(0, 0, generateRandomNumber(5, 15));
-					 break;
-					 default:
-					 aceParticle.beginFill(aceColors[1], .5);
-					 aceParticle.drawCircle(0, 0, generateRandomNumber(2, 10));
-					 }
-					 aceParticle.endFill();
-					 if (matchVizViewConfig.isWebGL) aceParticle.blendMode = PIXI.blendModes.MULTIPLY;
-					 momentAce.addChild(aceParticle);
-					 aceExplosionArray1.push(aceParticle);
-					 }
-					 /*
 					// CREATE SOME EXPLOSION PIECES
 					for (var i = 0; i < 6; i++) {
 						var aceParticle = new PIXI.Graphics();
@@ -1393,7 +1392,7 @@ angular.module('the-clean').directive('aniAce',
 						momentAce.addChild(aceParticle);
 						aceExplosionArray2.push(aceParticle);
 					}
-					*/
+
 					aceBallTrailer = new PIXI.Graphics();
 					aceBallTrailer.pivot.x = 5;
 					aceBallTrailer.pivot.y = 0;
@@ -1505,6 +1504,7 @@ angular.module('the-clean').directive('aniAce',
 				}
 				momentAce.visible = false;
 			}
+
 
 			function redrawAce() {
 				var tempColorOrder = 1 + Math.floor(Math.random()*2);
