@@ -1672,7 +1672,11 @@ angular.module('the-clean').directive('aniAce',
 
 			function destroyAce() {
 
-				aceAnimationOut =  new TimelineMax({ paused: true});
+				function scaleZero(){
+					TweenMax.to(["#visualizer", "ani-ace", "#icon_ace"], 2, {scale:0});
+					TweenMax.set(["#visualizer", "ani-ace"],{display:"none", delay:2});
+				}
+				aceAnimationOut =  new TimelineMax({ paused: true, onComplete:scaleZero});
 
 				//////////////// PARTICLE STUFF /////////////////
 				aceAnimationOut.add(TweenMax.to( aceParticleContainer, 1.0, { alpha: 0 }), 0);
@@ -1758,6 +1762,7 @@ angular.module('the-clean').directive('aniAce',
 
 			$scope.ace = function(){
 				explodeAce();
+
 				return false;
 			}
 
