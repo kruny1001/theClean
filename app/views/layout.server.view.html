@@ -45,17 +45,28 @@
 	<![endif]-->
 </head>
 
-<body class="ng-cloak">
-	<header data-ng-include="'/modules/core/views/header.client.view.html'" class="navbar navbar-fixed-top navbar-inverse"></header>
-	<section class="content">
-		<section class="container">
-			{% block content %}{% endblock %}
-		</section>
-	</section>
+<body layout="row" class="ng-cloak">
+	<!--<header data-ng-include="'/modules/core/views/header.client.view.html'" class="navbar navbar-fixed-top navbar-inverse"></header>-->
+
+	{% block content %}{% endblock %}
 
 	<!--Embedding The User Object-->
 	<script type="text/javascript">
-		var user = {{ user | json | safe }};
+		var user = {
+		{
+			user | json | safe
+		};
+		}
+	</script>
+
+
+	<script src="//ajax.googleapis.com/ajax/libs/webfont/1.5.10/webfont.js"></script>
+	<script>
+		WebFont.load({
+			google: {
+				families: ['Droid Sans', 'Droid Serif']
+			}
+		});
 	</script>
 
 	<!--Application JavaScript Files-->

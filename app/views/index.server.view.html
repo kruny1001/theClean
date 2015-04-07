@@ -1,5 +1,22 @@
 {% extends 'layout.server.view.html' %}
 
 {% block content %}
-	<section data-ui-view></section>
+
+<div layout="row" tabindex="-1" flex role="main" layout-fill>
+	<md-sidenav
+			flex
+			md-is-locked-open="$mdMedia('gt-md')"
+			id="sideNav"
+			data-ng-include="'/modules/core/views/sideNav.client.view.html'"
+			class="openboard-sidenav md-sidenav-left md-whiteframe-z2
+                ng-isolate-scope md-closed md-locked-open"
+			style="width:254px; background-color:#CFCFCF; overflow-x: hidden"
+			md-component-id="left" tabindex="-1">
+	</md-sidenav>
+
+	<div layout="column" flex>
+		<md-toolbar class="md-primary" data-ng-include="'/modules/core/views/header.client.view.html'"></md-toolbar>
+		<md-content md-scroll-y ui-view flex></md-content>
+	</div>
+</div>
 {% endblock %}

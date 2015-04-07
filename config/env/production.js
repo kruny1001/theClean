@@ -37,6 +37,11 @@ module.exports = {
 				'public/lib/gsap/src/uncompressed/TimelineMax.js',
 				'public/lib/gsap/src/uncompressed/TweenMax.js',
 				'public/lib/angular-aria/angular-aria.js',
+				'public/lib/jquery/dist/jquery.min.js',
+				'public/lib/pixi/bin/pixi.js',
+				'public/lib/three.js/three.min.js',
+				'public/3rd/particalEngine.js',
+
 			]
 		},
 		css: 'public/dist/application.min.css',

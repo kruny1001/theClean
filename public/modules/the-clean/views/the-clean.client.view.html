@@ -17,6 +17,7 @@
         </div>
     </div>
 
+    <ani-ace></ani-ace>
     <nvd3 options="options" data="data" ng-show="tcProgress"></nvd3>
 
     <md-content ng-show="tcStartPage">
@@ -74,25 +75,30 @@
         </div>
     </md-content>
 
+    <md-whiteframe flex="" class="md-whiteframe-z2 home-card ob-underbar-dark"
+                   layout="column" layout-align="space-around start">
+        <h3>간편한 결제 시스템</h3>
+    </md-whiteframe>
 
-    <!--<h3><strong>Module Interface</strong></h3>-->
+    <md-whiteframe flex="" class="md-whiteframe-z2 home-card ob-underbar-base"
+                   layout="column" layout-align="space-around start">
+        <h3>실시간 업데이</h3>
+    </md-whiteframe>
 
-    <!---->
+    <md-whiteframe flex="" class="md-whiteframe-z2 home-card ob-underbar-green"
+                   layout="column" layout-align="space-around start">
+        <h3>합리적 가격</h3>
+    </md-whiteframe>
 
-    <!--<h3><strong>User Information</strong></h3>-->
-    <!--<md-button class="md-warn md-raised md-hue-3" style="font-size:12px; margin-bottom: 20px" ng-click="tcUserInfo = toggle(tcUserInfo)"><strong>User Information {{tcUserInfo}}</strong></md-button>-->
-    <!--<div id="tc-user-info" ng-show="tcUserInfo">-->
-        <!--<pre ng-show="authentication.user === ''">-->
-            <!--로그인이 필요 합니다.-->
-        <!--</pre>-->
-        <!--<pre ng-show="authentication.user !== ''">-->
-            <!--Current User ID: {{authentication.user.username}}-->
-            <!--Email:{{authentication.user.email}}-->
-            <!--Roles:{{authentication.user.roles}}-->
+    <md-whiteframe flex="" class="md-whiteframe-z2 home-card ob-underbar-red"
+                   layout="column" layout-align="space-around start">
+        <h3>고객 만족 서비스</h3>
+    </md-whiteframe>
 
-            <!--{{authentication}}-->
-        <!--</pre>-->
-    <!--</div>-->
+    <md-whiteframe flex="" class="md-whiteframe-z2 home-card ob-underbar-yellow"
+                   layout="column" layout-align="space-around start">
+        <h3>연락처</h3>
+    </md-whiteframe>
 
     <tc-order class="tc-order-ui" ng-show="tcOrder" user-info="authentication" ></tc-order>
 
