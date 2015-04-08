@@ -200,8 +200,8 @@ angular.module('core').config(['$stateProvider', '$urlRouterProvider',
 
 		// Home state routing
 		$stateProvider.
-		state('home', {
-			url: '/',
+		state('mean-home', {
+			url: '/mean',
 			templateUrl: 'modules/core/views/home.client.view.html'
 		});
 	}
@@ -258,67 +258,65 @@ angular.module('core')
 				}, 650);
 			};
 
-			$scope.tiles = buildGridModel({
-				icon : "avatar:svg-",
-				title: "Svg-",
-				background: ""
-			});
-			function buildGridModel(tileTmpl){
-				var it, results = [ ];
-				for (var j=0; j<6; j++) {
-					it = angular.extend({},tileTmpl);
-					it.icon  = it.icon + (j+1);
-					//it.title = it.title + (j+1);
-					it.span  = { row : "1", col : "1" };
-					switch(j+1) {
-						case 1:
-							it.ifCondition = "Authentication.user";
-							it.id="profile";
-							it.background = "red";
-							it.title = "Profile";
-							it.span.row = it.span.col = 2;
-							break;
-						case 2:
-							it.ifCondition = "!Authentication.user";
-							it.id="signIn";
-							it.title = "Sign In";
-							it.background = "green";
-							it.span.row = it.span.col = 1;
-							break;
-						case 3:
-							it.ifCondition = "Authentication.user";
-							it.id="signOut";
-							it.title = "Sign Out";
-							it.background = "darkBlue";
-							break;
-						case 4:
-							it.ifCondition = true;
-							it.id="tutorial";
-							it.title = "Tutorial";
-							it.background = "blue";
-							it.span.col = 2;
-							break;
-						case 5:
-							it.ifCondition = "Authentication.user";
-							it.id="urClass";
-							it.background = "yellow";
-							it.span.col = 2;
-							it.title = "Your Classes";
-							break;
-						case 6:
-							it.ifCondition = "Authentication.user";
-							it.id="allClass";
-							it.background = "red";
-							it.span.col = 2;
-							it.title = "All Classes";
-							break;
-
-
-					}
-					results.push(it);
-				}
-				return results;
-			}
+			//$scope.tiles = buildGridModel({
+			//	icon : "avatar:svg-",
+			//	title: "Svg-",
+			//	background: ""
+			//});
+			//function buildGridModel(tileTmpl){
+			//	var it, results = [ ];
+			//	for (var j=0; j<6; j++) {
+			//		it = angular.extend({},tileTmpl);
+			//		it.icon  = it.icon + (j+1);
+			//		//it.title = it.title + (j+1);
+			//		it.span  = { row : "1", col : "1" };
+			//		switch(j+1) {
+			//			case 1:
+			//				it.ifCondition = "Authentication.user";
+			//				it.id="profile";
+			//				it.background = "red";
+			//				it.title = "Profile";
+			//				it.span.row = it.span.col = 2;
+			//				break;
+			//			case 2:
+			//				it.ifCondition = "!Authentication.user";
+			//				it.id="signIn";
+			//				it.title = "Sign In";
+			//				it.background = "green";
+			//				it.span.row = it.span.col = 1;
+			//				break;
+			//			case 3:
+			//				it.ifCondition = "Authentication.user";
+			//				it.id="signOut";
+			//				it.title = "Sign Out";
+			//				it.background = "darkBlue";
+			//				break;
+			//			case 4:
+			//				it.ifCondition = true;
+			//				it.id="tutorial";
+			//				it.title = "Tutorial";
+			//				it.background = "blue";
+			//				it.span.col = 2;
+			//				break;
+			//			case 5:
+			//				it.ifCondition = "Authentication.user";
+			//				it.id="urClass";
+			//				it.background = "yellow";
+			//				it.span.col = 2;
+			//				it.title = "Your Classes";
+			//				break;
+			//			case 6:
+			//				it.ifCondition = "Authentication.user";
+			//				it.id="allClass";
+			//				it.background = "red";
+			//				it.span.col = 2;
+			//				it.title = "All Classes";
+			//				break;
+			//		}
+			//		results.push(it);
+			//	}
+			//	return results;
+			//}
 
 			$rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
 				console.log('closed');
@@ -365,8 +363,8 @@ angular.module('core')
 				else if(name ==='Home'){
 					$state.go('the-clean');
 				}
-				else if(name ==='All Classes'){
-					$state.go('listD2lClassesAll');
+				else if(name ==='Your Order'){
+					$state.go('listTheCleanCruds');
 				}
 				else if(name ==='Sign In'){
 					console.log('sign in ');
@@ -691,6 +689,10 @@ angular.module('the-clean').config(['$stateProvider','$mdIconProvider',
 	function($stateProvider,$mdIconProvider) {
 		// The clean state routing
 		$stateProvider.
+		state('home', {
+			url: '/',
+			templateUrl: 'modules/the-clean/views/home.client.view.html'
+		}).
 		state('tc-order', {
 			url: '/tc-order',
 			templateUrl: 'modules/the-clean/views/tc-order.client.view.html'
@@ -707,6 +709,20 @@ angular.module('the-clean').config(['$stateProvider','$mdIconProvider',
 
 'use strict';
 
+angular.module('the-clean').controller('HomeController', ['$scope','Authentication',
+	function($scope, Authentication) {
+        $scope.tcStartPage = true;
+        $scope.homeContents = {
+            mainTitle : "The Clean",
+            subTitleText: "상세 설명 상세 설명 상세 설명 상세 설명 상세 설명"
+        };
+        $scope.authentication = Authentication;
+        $scope.notice = "Prototype";
+	}
+]);
+
+'use strict';
+
 angular.module('the-clean').controller('TcOrderController', ['$scope',
 	function($scope) {
 		// Tc order controller logic
@@ -717,19 +733,21 @@ angular.module('the-clean').controller('TcOrderController', ['$scope',
 
 angular.module('the-clean').controller('TheCleanController', ['$scope','Authentication',
 	function($scope, Authentication) {
+
+        $scope.aceAction = false;
 		// The clean controller logic
 		// ...
         $scope.authentication = Authentication;
-        $scope.toppings = [
-            { category: 'meat', name: 'Pepperoni' },
-            { category: 'meat', name: 'Sausage' },
-            { category: 'meat', name: 'Ground Beef' },
-            { category: 'meat', name: 'Bacon' },
-            { category: 'veg', name: 'Mushrooms' },
-            { category: 'veg', name: 'Onion' },
-            { category: 'veg', name: 'Green Pepper' },
-            { category: 'veg', name: 'Green Olives' },
-        ];
+        //$scope.toppings = [
+        //    { category: 'meat', name: 'Pepperoni' },
+        //    { category: 'meat', name: 'Sausage' },
+        //    { category: 'meat', name: 'Ground Beef' },
+        //    { category: 'meat', name: 'Bacon' },
+        //    { category: 'veg', name: 'Mushrooms' },
+        //    { category: 'veg', name: 'Onion' },
+        //    { category: 'veg', name: 'Green Pepper' },
+        //    { category: 'veg', name: 'Green Olives' },
+        //];
 
         $scope.tcOrder = true;
         $scope.tcStartPage = false;
@@ -739,7 +757,7 @@ angular.module('the-clean').controller('TheCleanController', ['$scope','Authenti
 
         $scope.toggle = function(targetDirective) {
             return targetDirective = !targetDirective;
-        };
+        }
 
         $scope.options = {
             chart: {
@@ -774,336 +792,7 @@ angular.module('the-clean').controller('TheCleanController', ['$scope','Authenti
                     {"label" : "Complete" , "value" : 100}
                 ]
             }
-        ];
-
-//        //All code created by Blake Bowen
-////Forked from: http://codepen.io/osublake/pen/RNLdpz/
-//
-//// GRID OPTIONS
-//        var rowSize   = 100;
-//        var colSize   = 100;
-//        var gutter    = 7;     // Spacing between tiles
-//        var numTiles  = 25;    // Number of tiles to initially populate the grid with
-//        var fixedSize = false; // When true, each tile's colspan will be fixed to 1
-//        var oneColumn = false; // When true, grid will only have 1 column and tiles have fixed colspan of 1
-//        var threshold = "50%"; // This is amount of overlap between tiles needed to detect a collision
-//
-//        var $add  = $("#add");
-//        var $list = $("#list");
-//        var $mode = $("input[name='layout']");
-//
-//// Live node list of tiles
-//        var tiles  = $list[0].getElementsByClassName("tile");
-//        var label  = 1;
-//        var zIndex = 1000;
-//
-//        var startWidth  = "100%";
-//        var startSize   = colSize;
-//        var singleWidth = colSize * 3;
-//
-//        var colCount   = null;
-//        var rowCount   = null;
-//        var gutterStep = null;
-//
-//        var shadow1 = "0 1px 3px  0 rgba(0, 0, 0, 0.5), 0 1px 2px 0 rgba(0, 0, 0, 0.6)";
-//        var shadow2 = "0 6px 10px 0 rgba(0, 0, 0, 0.3), 0 2px 2px 0 rgba(0, 0, 0, 0.2)";
-//
-//        $(window).resize(resize);
-//        $add.click(createTile);
-//        $mode.change(init);
-//
-//        init();
-//
-//// ========================================================================
-////  INIT
-//// ========================================================================
-//        function init() {
-//            var width = startWidth;
-//
-//            // This value is defined when this function
-//            // is fired by a radio button change event
-//            switch (this.value) {
-//                case "mixed":
-//                    fixedSize = false;
-//                    oneColumn = false;
-//                    colSize   = startSize;
-//                    break;
-//                case "fixed":
-//                    fixedSize = true;
-//                    oneColumn = false;
-//                    colSize   = startSize;
-//                    break;
-//                case "column":
-//                    fixedSize = false;
-//                    oneColumn = true;
-//                    width     = singleWidth;
-//                    colSize   = singleWidth;
-//                    break;
-//            }
-//
-//            $(".tile").remove();
-//
-//            TweenLite.to($list, 0.2, { width: width });
-//            TweenLite.delayedCall(0.25, populateBoard);
-//
-//            function populateBoard() {
-//                label = 1;
-//                resize();
-//                for (var i = 0; i < numTiles; i++) {
-//                    createTile();
-//                }
-//            }
-//        }
-//
-//
-//// ========================================================================
-////  RESIZE
-//// ========================================================================
-//        function resize() {
-//
-//            colCount   = oneColumn ? 1 : Math.floor($list.outerWidth() / (colSize + gutter));
-//            gutterStep = colCount == 1 ? gutter : (gutter * (colCount - 1) / colCount);
-//            rowCount   = 0;
-//
-//            layoutInvalidated();
-//        }
-//
-//
-//// ========================================================================
-////  CHANGE POSITION
-//// ========================================================================
-//        function changePosition(from, to, rowToUpdate) {
-//
-//            var $tiles = $(".tile");
-//            var insert = from > to ? "insertBefore" : "insertAfter";
-//
-//            // Change DOM positions
-//            $tiles.eq(from)[insert]($tiles.eq(to));
-//
-//            layoutInvalidated(rowToUpdate);
-//        }
-//
-//// ========================================================================
-////  CREATE TILE
-//// ========================================================================
-//        function createTile() {
-//            var colspan = fixedSize || oneColumn ? 1 : Math.floor(Math.random() * 2) + 1;
-//            var element = $("<div></div>").addClass("tile").html(label++);
-//            var lastX   = 0;
-//
-//            Draggable.create(element, {
-//                onDrag      : onDrag,
-//                onClick     : onClick,
-//                onPress     : onPress,
-//                onRelease   : onRelease,
-//                zIndexBoost : false
-//            });
-//
-//            // NOTE: Leave rowspan set to 1 because this demo
-//            // doesn't calculate different row heights
-//            var tile = {
-//                col        : null,
-//                colspan    : colspan,
-//                element    : element,
-//                height     : 0,
-//                inBounds   : true,
-//                index      : null,
-//                isDragging : false,
-//                lastIndex  : null,
-//                newTile    : true,
-//                positioned : false,
-//                row        : null,
-//                rowspan    : 1,
-//                width      : 0,
-//                x          : 0,
-//                y          : 0
-//            };
-//
-//            // Add tile properties to our element for quick lookup
-//            element[0].tile = tile;
-//
-//            $list.append(element);
-//            layoutInvalidated();
-//
-//            function onClick(){
-//                console.log(this.target);
-//                //TweenMax.to(this.target, 0.5, {scale:4});
-//                console.log('clicked');
-//            }
-//
-//            function onPress() {
-//
-//                lastX = this.x;
-//                tile.isDragging = true;
-//                tile.lastIndex  = tile.index;
-//
-//                TweenLite.to(element, 0.2, {
-//                    autoAlpha : 0.75,
-//                    boxShadow : shadow2,
-//                    scale     : 0.95,
-//                    zIndex    : "+=1000"
-//                });
-//            }
-//
-//            function onDrag() {
-//
-//                // Move to end of list if not in bounds
-//                if (!this.hitTest($list, 0)) {
-//                    tile.inBounds = false;
-//                    changePosition(tile.index, tiles.length - 1);
-//                    return;
-//                }
-//
-//                tile.inBounds = true;
-//
-//                for (var i = 0; i < tiles.length; i++) {
-//
-//                    // Row to update is used for a partial layout update
-//                    // Shift left/right checks if the tile is being dragged
-//                    // towards the the tile it is testing
-//                    var testTile    = tiles[i].tile;
-//                    var onSameRow   = (tile.row === testTile.row);
-//                    var rowToUpdate = onSameRow ? tile.row : -1;
-//                    var shiftLeft   = onSameRow ? (this.x < lastX && tile.index > i) : true;
-//                    var shiftRight  = onSameRow ? (this.x > lastX && tile.index < i) : true;
-//                    var validMove   = (testTile.positioned && (shiftLeft || shiftRight));
-//
-//                    if (this.hitTest(tiles[i], threshold) && validMove) {
-//                        changePosition(tile.index, i, rowToUpdate);
-//                        break;
-//                    }
-//                }
-//
-//                lastX = this.x;
-//            }
-//
-//            function onRelease() {
-//
-//                // Move tile back to last position if released out of bounds
-//                this.hitTest($list, 0)
-//                    ? layoutInvalidated()
-//                    : changePosition(tile.index, tile.lastIndex);
-//
-//                TweenLite.to(element, 0.2, {
-//                    autoAlpha : 1,
-//                    boxShadow: shadow1,
-//                    scale     : 1,
-//                    x         : tile.x,
-//                    y         : tile.y,
-//                    zIndex    : ++zIndex
-//                });
-//
-//                tile.isDragging = false;
-//            }
-//        }
-//
-//// ========================================================================
-////  LAYOUT INVALIDATED
-//// ========================================================================
-//        function layoutInvalidated(rowToUpdate) {
-//
-//            var timeline = new TimelineMax();
-//            var partialLayout = (rowToUpdate > -1);
-//
-//            var height = 0;
-//            var col    = 0;
-//            var row    = 0;
-//            var time   = 0.35;
-//
-//            $(".tile").each(function(index, element) {
-//
-//                var tile    = this.tile;
-//                var oldRow  = tile.row;
-//                var oldCol  = tile.col;
-//                var newTile = tile.newTile;
-//
-//                // PARTIAL LAYOUT: This condition can only occur while a tile is being
-//                // dragged. The purpose of this is to only swap positions within a row,
-//                // which will prevent a tile from jumping to another row if a space
-//                // is available. Without this, a large tile in column 0 may appear
-//                // to be stuck if hit by a smaller tile, and if there is space in the
-//                // row above for the smaller tile. When the user stops dragging the
-//                // tile, a full layout update will happen, allowing tiles to move to
-//                // available spaces in rows above them.
-//                if (partialLayout) {
-//                    row = tile.row;
-//                    if (tile.row !== rowToUpdate) return;
-//                }
-//
-//                // Update trackers when colCount is exceeded
-//                if (col + tile.colspan > colCount) {
-//                    col = 0; row++;
-//                }
-//
-//                $.extend(tile, {
-//                    col    : col,
-//                    row    : row,
-//                    index  : index,
-//                    x      : col * gutterStep + (col * colSize),
-//                    y      : row * gutterStep + (row * rowSize),
-//                    width  : tile.colspan * colSize + ((tile.colspan - 1) * gutterStep),
-//                    height : tile.rowspan * rowSize
-//                });
-//
-//                col += tile.colspan;
-//
-//                // If the tile being dragged is in bounds, set a new
-//                // last index in case it goes out of bounds
-//                if (tile.isDragging && tile.inBounds) {
-//                    tile.lastIndex = index;
-//                }
-//
-//                if (newTile) {
-//
-//                    // Clear the new tile flag
-//                    tile.newTile = false;
-//
-//                    var from = {
-//                        autoAlpha : 0,
-//                        boxShadow : shadow1,
-//                        height    : tile.height,
-//                        scale     : 0,
-//                        width     : tile.width
-//                    };
-//
-//                    var to = {
-//                        autoAlpha : 1,
-//                        scale     : 1,
-//                        zIndex    : zIndex
-//                    }
-//
-//                    timeline.fromTo(element, time, from, to, "reflow");
-//                }
-//
-//                // Don't animate the tile that is being dragged and
-//                // only animate the tiles that have changes
-//                if (!tile.isDragging && (oldRow !== tile.row || oldCol !== tile.col)) {
-//
-//                    var duration = newTile ? 0 : time;
-//
-//                    // Boost the z-index for tiles that will travel over
-//                    // another tile due to a row change
-//                    if (oldRow !== tile.row) {
-//                        timeline.set(element, { zIndex: ++zIndex }, "reflow");
-//                    }
-//
-//                    timeline.to(element, duration, {
-//                        x : tile.x,
-//                        y : tile.y,
-//                        onComplete : function() { tile.positioned = true; },
-//                        onStart    : function() { tile.positioned = false; }
-//                    }, "reflow");
-//                }
-//            });
-//
-//            // If the row count has changed, change the height of the container
-//            if (row !== rowCount) {
-//                rowCount = row;
-//                height   = rowCount * gutterStep + (++row * rowSize);
-//                timeline.to($list, 0.2, { height: height }, "reflow");
-//            }
-//        }
-
+        ]
     }
 ]);
 
@@ -1128,7 +817,7 @@ Object.defineProperty(PIXI.DisplayObject.prototype, 'scaleY', {
 
 
 angular.module('the-clean').directive('aniAce',
-	function() {
+	function() {
 		aniAceCtrl.$inject = ["$scope"];
 		return {
 			templateUrl: 'modules/the-clean/directives/template/ani-ace.html',
@@ -1828,7 +1517,7 @@ function OrderDirective($tcOrder, $interpolate, $compile, $parse, $mdToast) {
 
 			scope.getTotal = function(){
 				scope.price = scope.numOrder * 900;
-			};
+			}
 
 			var toastPosition = {
 				bottom: true,
@@ -1994,7 +1683,7 @@ function GetRequires($parse){
 }
 GetRequires.$inject = ["$parse"];
 
-function SelectProvider($$interimElementProvider) {
+function SelectProvider($$interimElementProvider) {
 	selectDefaultOptions.$inject = ["$tcOrder", "$mdConstant", "$$rAF", "$mdUtil", "$mdTheming", "$timeout"];
 	return $$interimElementProvider('$tcOrder')
 		.setDefaults({

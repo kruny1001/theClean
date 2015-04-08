@@ -8,8 +8,8 @@ angular.module('core').config(['$stateProvider', '$urlRouterProvider',
 
 		// Home state routing
 		$stateProvider.
-		state('home', {
-			url: '/',
+		state('mean-home', {
+			url: '/mean',
 			templateUrl: 'modules/core/views/home.client.view.html'
 		});
 	}

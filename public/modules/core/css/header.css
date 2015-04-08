@@ -18,6 +18,26 @@
     border-left: 4px solid #3F4953;
 }
 
+.ob-underbar-top-base{
+    border-top: 4px solid #3F51B5;
+}
+
+.ob-underbar-top-yellow{
+    border-top: 4px solid #F6CB51;
+}
+
+.ob-underbar-top-red{
+    border-top: 4px solid #E25942;
+}
+
+.ob-underbar-top-green{
+    border-top: 4px solid #13A89E;
+}
+
+.ob-underbar-top-dark{
+    border-left: 4px solid #3F4953;
+}
+
 
 .openboard-background{
     background-color: whitesmoke;

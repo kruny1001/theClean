@@ -3,9 +3,9 @@
     <div id="text" style="display:block"><h1><strong>The Clean Project</strong></h1></div>
 
     <div layout="row" layout-sm="column"layout-margin style="font-size:12px;" layout-align="center center">
-        <div flex flex-order="1">
-            <md-button class="md-warn md-raised md-hue-3" ng-click="tcProgress = toggle(tcProgress)"><strong>Progress {{tcProgress}}</strong></md-button>
-        </div>
+        <!--<div flex flex-order="1">-->
+            <!--<md-button class="md-warn md-raised md-hue-3" ng-click="tcProgress = toggle(tcProgress)"><strong>Progress {{tcProgress}}</strong></md-button>-->
+        <!--</div>-->
         <div flex flex-order="2">
             <md-button class="md-warn md-raised md-hue-1" ng-click="tcOrder = toggle(tcOrder)"><strong>주문인터페이스 {{tcOrder}}</strong></md-button>
         </div>
@@ -17,7 +17,7 @@
         </div>
     </div>
 
-    <ani-ace></ani-ace>
+    <ani-ace ng-if="aceAction"></ani-ace>
     <nvd3 options="options" data="data" ng-show="tcProgress"></nvd3>
 
     <md-content ng-show="tcStartPage">
@@ -101,7 +101,6 @@
     </md-whiteframe>
 
     <tc-order class="tc-order-ui" ng-show="tcOrder" user-info="authentication" ></tc-order>
-
     <tc-start-page ng-show="tcStartPage"></tc-start-page>
     <tc-price ng-show="tcPrice"></tc-price>
 

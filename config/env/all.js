@@ -46,6 +46,7 @@ module.exports = {
 				'public/lib/bootstrap/dist/css/bootstrap.css',
 				'public/lib/bootstrap/dist/css/bootstrap-theme.css',
 				'public/lib/angular-material/angular-material.min.css',
+				'public/lib/nvd3/nv.d3.min.css'
 			],
 			js: [
 				'public/lib/angular/angular.js',
@@ -65,6 +66,10 @@ module.exports = {
 				'public/lib/pixi/bin/pixi.js',
 				'public/lib/three.js/three.min.js',
 				'public/3rd/particalEngine.js',
+
+				'public/lib/d3/d3.min.js',
+				'public/lib/nvd3/nv.d3.min.js',
+				'public/lib/angular-nvd3/dist/angular-nvd3.min.js'
 			]
 		},
 		css: [

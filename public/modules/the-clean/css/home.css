@@ -1,0 +1,46 @@
+@font-face{
+    font-family: 'kr-Black';
+    src: url('NotoSansCJKkr-Black.otf') format('opentype');
+}
+
+@font-face{
+    font-family: 'kr-Light';
+    src: url('NotoSansCJKkr-Light.otf') format('opentype');
+}
+
+
+.meanT-brandName {
+    position:relative;
+    top:20%;
+    bottom:20%;
+}
+
+.meanT-homeFirstRow{
+    color: #7858ff;
+    width:100%;
+    /*background: #F6CB51 url("https://helpx.adobe.com/content/dam/help/en/flash/how-to/flashpro-export-svg_1408x792.png");*/
+    background: #F6CB51 url("https://d3ui957tjb5bqd.cloudfront.net/images/screenshots/products/4/49/49040/aqua-onsie-banner-o.jpg?1383723482");
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+}
+
+
+.meanT-headTitle {
+    margin: 50px auto; text-align:center; font-size:32px;
+}
+
+.meanT-headSubTitle {
+    font-family: kr-Black;
+    max-width:600px;
+    font-size:18px;
+    text-align:center;
+    margin: 0px auto;
+}
+
+.home-card h2{
+    font-family: 'kr-Black';
+}
+
+.home-card p{
+    font-family: 'kr-Light';
+}
