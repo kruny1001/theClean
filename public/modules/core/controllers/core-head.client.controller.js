@@ -165,6 +165,9 @@ angular.module('core')
 				else if(name ==='Sign Out'){
 					$window.location.href = 'auth/signout';
 				}
+                else if(name ==='Make Order'){
+                    $state.go('createTheCleanCrud');
+                }
 			}
 
 		}

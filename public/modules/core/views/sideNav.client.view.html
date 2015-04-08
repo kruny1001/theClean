@@ -12,7 +12,7 @@
             <div class="docs-logotype">Your Account</div>
         </h1>
     </md-toolbar>
-    <md-content class="sideNavTiles" style="overflow-x: hidden">
+    <md-content class="sideNavTiles" style="font-family:'kr-light'; overflow-x: hidden">
         <md-grid-list
                 md-cols-sm="2" md-cols-md="2" md-cols-gt-md="2"
                 md-row-height-gt-md="1:1" md-row-height="4:3"
@@ -24,8 +24,8 @@
                     md-colspan="2"
                     class="red"
                     ng-click="sliderNavEvent('Profile', 'profile')">
-                <md-icon md-svg-icon="avatar:svg-1"></md-icon>
-                <md-grid-tile-footer><h3>Profile</h3></md-grid-tile-footer>
+                <md-icon md-svg-src="modules/core/img/side/profile.svg"></md-icon>
+                <md-grid-tile-footer><h3>프로필</h3></md-grid-tile-footer>
             </md-grid-tile>
             <md-grid-tile
                     ng-if="!authentication.user"
@@ -35,7 +35,7 @@
                     class="green"
                     ng-click="sliderNavEvent('Sign In', 'signin')">
                 <md-icon md-svg-icon="avatar:svg-2"></md-icon>
-                <md-grid-tile-footer><h3>Sign In</h3></md-grid-tile-footer>
+                <md-grid-tile-footer><h3>로그인</h3></md-grid-tile-footer>
             </md-grid-tile>
             <md-grid-tile
                     ng-if="authentication.user"
@@ -45,16 +45,26 @@
                     class="darkBlue"
                     ng-click="sliderNavEvent('Sign Out', 'signOut')">
                 <md-icon md-svg-icon="avatar:svg-3"></md-icon>
-                <md-grid-tile-footer><h3>Sign Out</h3></md-grid-tile-footer>
+                <md-grid-tile-footer><h3>로그아웃</h3></md-grid-tile-footer>
             </md-grid-tile>
             <md-grid-tile
                     id="home"
                     md-rowspan="1"
                     md-colspan="2"
                     class="blue"
-                    ng-click="sliderNavEvent('Home', 'the-clean')">
-                <md-icon md-svg-icon="avatar:svg-4"></md-icon>
-                <md-grid-tile-footer><h3>Home</h3></md-grid-tile-footer>
+                    ng-click="sliderNavEvent('Home', 'home')">
+                <md-icon md-svg-src="modules/core/img/side/home.svg"></md-icon>
+                <md-grid-tile-footer><h3>홈</h3></md-grid-tile-footer>
+            </md-grid-tile>
+            <md-grid-tile
+                    ng-if="authentication.user"
+                    id="order"
+                    md-rowspan="1"
+                    md-colspan="2"
+                    class="lightPurple"
+                    ng-click="sliderNavEvent('Make Order', 'order')">
+                <md-icon md-svg-src="modules/core/img/side/test2.svg"></md-icon>
+                <md-grid-tile-footer><h3>주문하기</h3></md-grid-tile-footer>
             </md-grid-tile>
             <md-grid-tile
                     ng-if="authentication.user"
@@ -63,8 +73,8 @@
                     md-colspan="1"
                     class="yellow"
                     ng-click="sliderNavEvent('Your Order', 'urClass')">
-                <md-icon md-svg-icon="avatar:svg-5"></md-icon>
-                <md-grid-tile-footer><h3>Your Order</h3></md-grid-tile-footer>
+                <md-icon md-svg-src="modules/core/img/side/info.svg"></md-icon>
+                <md-grid-tile-footer><h3>주문정보</h3></md-grid-tile-footer>
             </md-grid-tile>
             <md-grid-tile
                     ng-if="authentication.user"
@@ -73,8 +83,26 @@
                     md-colspan="1"
                     class="red"
                     ng-click="sliderNavEvent('All Classes', 'allClass')">
-                <md-icon md-svg-icon="avatar:svg-6"></md-icon>
-                <md-grid-tile-footer><h3>Notification</h3></md-grid-tile-footer>
+                <md-icon md-svg-src="modules/core/img/side/chat.svg"></md-icon>
+                <md-grid-tile-footer><h3>알림</h3></md-grid-tile-footer>
+            </md-grid-tile>
+            <md-grid-tile
+                    id="test1"
+                    md-rowspan="1"
+                    md-colspan="1"
+                    class="yellow"
+                    ng-click="sliderNavEvent('All Classes', 'test1')">
+                <md-icon md-svg-src="modules/core/img/side/test1.svg"></md-icon>
+                <md-grid-tile-footer><h3>[TEST] 애니1</h3></md-grid-tile-footer>
+            </md-grid-tile>
+            <md-grid-tile
+                    id="test2"
+                    md-rowspan="1"
+                    md-colspan="1"
+                    class="red"
+                    ng-click="sliderNavEvent('All Classes', 'test2')">
+                <md-icon md-svg-src="modules/core/img/side/notification.svg"></md-icon>
+                <md-grid-tile-footer><h3>[TEST] 애니2</h3></md-grid-tile-footer>
             </md-grid-tile>
         </md-grid-list>
     </md-content>

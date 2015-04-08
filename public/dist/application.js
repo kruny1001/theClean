@@ -373,6 +373,9 @@ angular.module('core')
 				else if(name ==='Sign Out'){
 					$window.location.href = 'auth/signout';
 				}
+                else if(name ==='Make Order'){
+                    $state.go('createTheCleanCrud');
+                }
 			}
 
 		}
@@ -734,7 +737,7 @@ angular.module('the-clean').controller('TcOrderController', ['$scope',
 angular.module('the-clean').controller('TheCleanController', ['$scope','Authentication',
 	function($scope, Authentication) {
 
-        $scope.aceAction = false;
+        $scope.aceAction = true;
 		// The clean controller logic
 		// ...
         $scope.authentication = Authentication;

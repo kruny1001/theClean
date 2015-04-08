@@ -3,7 +3,7 @@
 angular.module('the-clean').controller('TheCleanController', ['$scope','Authentication',
 	function($scope, Authentication) {
 
-        $scope.aceAction = false;
+        $scope.aceAction = true;
 		// The clean controller logic
 		// ...
         $scope.authentication = Authentication;
