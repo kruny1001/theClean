@@ -376,6 +376,9 @@ angular.module('core')
                 else if(name ==='Make Order'){
                     $state.go('createTheCleanCrud');
                 }
+                else if(name ==='Admin Page'){
+                    $state.go('admin-page');
+                }
 			}
 
 		}
@@ -692,6 +695,10 @@ angular.module('the-clean').config(['$stateProvider','$mdIconProvider',
 	function($stateProvider,$mdIconProvider) {
 		// The clean state routing
 		$stateProvider.
+		state('admin-page', {
+			url: '/admin-page',
+			templateUrl: 'modules/the-clean/views/admin-page.client.view.html'
+		}).
 		state('home', {
 			url: '/',
 			templateUrl: 'modules/the-clean/views/home.client.view.html'
@@ -710,6 +717,18 @@ angular.module('the-clean').config(['$stateProvider','$mdIconProvider',
 	}
 ]);
 
+'use strict';
+
+angular.module('the-clean').controller('AdminPageController', ['$scope','TheCleanCruds',
+	function($scope,TheCleanCruds) {
+		// Admin page controller logic
+		// ...
+        $scope.orders = TheCleanCruds.query();
+        $scope.orders.$promise.then(function(result){
+            $scope.numOrder = result.length;
+        });
+	}
+]);
 'use strict';
 
 angular.module('the-clean').controller('HomeController', ['$scope','Authentication',

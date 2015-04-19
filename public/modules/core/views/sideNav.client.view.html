@@ -44,7 +44,7 @@
                     md-colspan="1"
                     class="darkBlue"
                     ng-click="sliderNavEvent('Sign Out', 'signOut')">
-                <md-icon md-svg-icon="avatar:svg-3"></md-icon>
+                <md-icon md-svg-src="modules/core/img/side/logout.svg"></md-icon>
                 <md-grid-tile-footer><h3>로그아웃</h3></md-grid-tile-footer>
             </md-grid-tile>
             <md-grid-tile
@@ -85,6 +85,16 @@
                     ng-click="sliderNavEvent('All Classes', 'allClass')">
                 <md-icon md-svg-src="modules/core/img/side/chat.svg"></md-icon>
                 <md-grid-tile-footer><h3>알림</h3></md-grid-tile-footer>
+            </md-grid-tile>
+            <md-grid-tile
+                    ng-if="authentication.user"
+                    id="admin"
+                    md-rowspan="1"
+                    md-colspan="1"
+                    class="red"
+                    ng-click="sliderNavEvent('Admin Page', 'admin')">
+                <md-icon md-svg-src="modules/core/img/side/setting.svg"></md-icon>
+                <md-grid-tile-footer><h3>관리자</h3></md-grid-tile-footer>
             </md-grid-tile>
             <!--<md-grid-tile-->
                     <!--id="test1"-->

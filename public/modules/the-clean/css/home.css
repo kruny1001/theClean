@@ -10,6 +10,7 @@
 
 .home-background{
     background-color: whitesmoke;
+    font-family: RobotoDraft,Roboto,'Helvetica Neue',sans-serif;
 }
 
 .meanT-brandName {
@@ -32,7 +33,7 @@
 }
 
 .meanT-headSubTitle {
-    font-family: kr-Black;
+    /*font-family: kr-Black;*/
     max-width:600px;
     font-size:18px;
     text-align:center;
@@ -40,9 +41,9 @@
 }
 
 .home-card h2{
-    font-family: 'kr-Black';
+    /*font-family: 'kr-Black';*/
 }
 
 .home-card p{
-    font-family: 'kr-Light';
+    /*font-family: 'kr-Light';*/
 }

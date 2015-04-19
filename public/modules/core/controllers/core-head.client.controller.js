@@ -168,6 +168,9 @@ angular.module('core')
                 else if(name ==='Make Order'){
                     $state.go('createTheCleanCrud');
                 }
+                else if(name ==='Admin Page'){
+                    $state.go('admin-page');
+                }
 			}
 
 		}

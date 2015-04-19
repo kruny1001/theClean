@@ -1,21 +1,31 @@
 .ob-underbar-base{
     border-left: 4px solid #3F51B5;
+    margin: 10px;
+    padding: 10px;
 }
 
 .ob-underbar-yellow{
     border-left: 4px solid #F6CB51;
+    margin: 10px;
+    padding: 10px;
 }
 
 .ob-underbar-red{
     border-left: 4px solid #E25942;
+    margin: 10px;
+    padding: 10px;
 }
 
 .ob-underbar-green{
     border-left: 4px solid #13A89E;
+    margin: 10px;
+    padding: 10px;
 }
 
 .ob-underbar-dark{
     border-left: 4px solid #3F4953;
+    margin: 10px;
+    padding: 10px;
 }
 
 .ob-underbar-top-base{

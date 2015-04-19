@@ -5,6 +5,10 @@ angular.module('the-clean').config(['$stateProvider','$mdIconProvider',
 	function($stateProvider,$mdIconProvider) {
 		// The clean state routing
 		$stateProvider.
+		state('admin-page', {
+			url: '/admin-page',
+			templateUrl: 'modules/the-clean/views/admin-page.client.view.html'
+		}).
 		state('home', {
 			url: '/',
 			templateUrl: 'modules/the-clean/views/home.client.view.html'

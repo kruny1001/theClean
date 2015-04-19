@@ -41,7 +41,7 @@ module.exports = {
                 'public/lib/angular-aria/angular-aria.js',
                 'public/lib/jquery/dist/jquery.min.js',
                 'public/lib/pixi/bin/pixi.js',
-                'public/lib/three.js/three.min.js',
+               // 'public/lib/three.js/three.min.js',
                 'public/3rd/particalEngine.js',
 
                 'public/lib/d3/d3.min.js',

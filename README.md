@@ -4,3 +4,9 @@
 add 비밀번호 재확인
 change 이름 (first name and last name) -> name
 sidemenu rowcol and row 1
+
+주문리스트
+/#!/the-clean-cruds
+
+관리자 페이지
+/#!/admin-page
