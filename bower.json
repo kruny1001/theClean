@@ -12,7 +12,7 @@
     "angular-touch": "1.3.15",
     "angular-sanitize": "1.3.15",
     "angular-ui-router": "~0.2.11",
-    "angular-material": "~0.8.3",
+    "angular-material": "master",
     "gsap": "~1.16.1",
     "angular-aria": "~1.3.15",
     "moment": "~2.9.0",

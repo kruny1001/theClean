@@ -1,28 +1,25 @@
-<div class="tc-order-ui" style="font-family: kr-Light">
-    <!--<md-tooltip>-->
-        <!--Dev: tc-order-ui-tpl.html && tc-order-ui-client-directive.js-->
-    <!--</md-tooltip>-->
+<div class="tc-order-ui">
 
     <md-whiteframe flex="" class="md-whiteframe-z2 home-card ob-underbar-dark"
                    layout="column" layout-align="space-around start">
+        <h2 class="md-title"><b>주문 하기</b></h2>
+        <p class="md-caption">사용자가 주문을 하기 위한 Form 입니다. </p>
 
-        <p>사용자가 주문을 하기 위한 Form 입니다. </p>
-
-        <md-content data-ng-show="userInfo.user != ''" class="md-padding" layout="row" layout-sm="column" style="font-size:1.2em">
-            <md-input-container>
-                <label>User Name</label>
-                <input ng-model="userInfo.user.displayName" disabled>
-            </md-input-container>
-            <md-input-container>
-                <label>Email</label>
-                <input ng-model="userInfo.user.email" type="email" disabled>
-            </md-input-container>
-        </md-content>
-        <md-content data-ng-show="userInfo.user == ''" class="md-padding" layout="row" layout-sm="column" style="font-size:1.2em">
-            <h3>You Need to Signin</h3>
-        </md-content>
-
-
+        <div ng-if="false">
+            <md-content data-ng-show="userInfo.user != ''" class="md-padding" layout="row" layout-sm="column" style="font-size:1.2em">
+                <md-input-container>
+                    <label>User Name</label>
+                    <input ng-model="userInfo.user.displayName" disabled>
+                </md-input-container>
+                <md-input-container>
+                    <label>Email</label>
+                    <input ng-model="userInfo.user.email" type="email" disabled>
+                </md-input-container>
+            </md-content>
+            <md-content data-ng-show="userInfo.user == ''" class="md-padding" layout="row" layout-sm="column" style="font-size:1.2em">
+                <h3>You Need to Signin</h3>
+            </md-content>
+        </div>
             <form name="userForm" data-ng-submit="create()" style="width:100%;">
                 <div layout layout-sm="column">
                     <md-input-container flex>
@@ -34,10 +31,10 @@
                         <input type="date" name="deliberyDate" ng-model="deliberyDate">
                     </md-input-container>
                 </div>
-                <md-input-container flex>
-                    <label>Address</label>
-                    <input ng-model="address" name="address" placeholder="주소를 적어 주세요">
-                </md-input-container>
+                <!--<md-input-container flex>-->
+                    <!--<label>Address</label>-->
+                    <!--<input ng-model="address" name="address" placeholder="주소를 적어 주세요">-->
+                <!--</md-input-container>-->
 
                 <div layout layout-sm="column">
                     <md-input-container flex>
@@ -68,9 +65,9 @@
 
                 <md-button class="md-raised md-primary" type="submit"> Submit </md-button>
             </form>
-
-
     </md-whiteframe>
-
-
+    <md-whiteframe flex="" class="md-whiteframe-z2 home-card ob-underbar-red"
+                   layout="column" layout-align="space-around start">
+        TOTAL:
+    </md-whiteframe>
 </div>

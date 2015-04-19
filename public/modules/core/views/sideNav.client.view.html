@@ -20,8 +20,8 @@
             <md-grid-tile
                     ng-if="authentication.user"
                     id="profile"
-                    md-rowspan="2"
-                    md-colspan="2"
+                    md-rowspan="1"
+                    md-colspan="1"
                     class="red"
                     ng-click="sliderNavEvent('Profile', 'profile')">
                 <md-icon md-svg-src="modules/core/img/side/profile.svg"></md-icon>
@@ -31,7 +31,7 @@
                     ng-if="!authentication.user"
                     id="signIn"
                     md-rowspan="1"
-                    md-colspan="2"
+                    md-colspan="1"
                     class="green"
                     ng-click="sliderNavEvent('Sign In', 'signin')">
                 <md-icon md-svg-icon="avatar:svg-2"></md-icon>
@@ -41,7 +41,7 @@
                     ng-if="authentication.user"
                     id="signOut"
                     md-rowspan="1"
-                    md-colspan="2"
+                    md-colspan="1"
                     class="darkBlue"
                     ng-click="sliderNavEvent('Sign Out', 'signOut')">
                 <md-icon md-svg-icon="avatar:svg-3"></md-icon>
@@ -50,7 +50,7 @@
             <md-grid-tile
                     id="home"
                     md-rowspan="1"
-                    md-colspan="2"
+                    md-colspan="1"
                     class="blue"
                     ng-click="sliderNavEvent('Home', 'home')">
                 <md-icon md-svg-src="modules/core/img/side/home.svg"></md-icon>
@@ -60,7 +60,7 @@
                     ng-if="authentication.user"
                     id="order"
                     md-rowspan="1"
-                    md-colspan="2"
+                    md-colspan="1"
                     class="lightPurple"
                     ng-click="sliderNavEvent('Make Order', 'order')">
                 <md-icon md-svg-src="modules/core/img/side/test2.svg"></md-icon>
@@ -86,24 +86,24 @@
                 <md-icon md-svg-src="modules/core/img/side/chat.svg"></md-icon>
                 <md-grid-tile-footer><h3>알림</h3></md-grid-tile-footer>
             </md-grid-tile>
-            <md-grid-tile
-                    id="test1"
-                    md-rowspan="1"
-                    md-colspan="1"
-                    class="yellow"
-                    ng-click="sliderNavEvent('All Classes', 'test1')">
-                <md-icon md-svg-src="modules/core/img/side/test1.svg"></md-icon>
-                <md-grid-tile-footer><h3>[TEST] 애니1</h3></md-grid-tile-footer>
-            </md-grid-tile>
-            <md-grid-tile
-                    id="test2"
-                    md-rowspan="1"
-                    md-colspan="1"
-                    class="red"
-                    ng-click="sliderNavEvent('All Classes', 'test2')">
-                <md-icon md-svg-src="modules/core/img/side/notification.svg"></md-icon>
-                <md-grid-tile-footer><h3>[TEST] 애니2</h3></md-grid-tile-footer>
-            </md-grid-tile>
+            <!--<md-grid-tile-->
+                    <!--id="test1"-->
+                    <!--md-rowspan="1"-->
+                    <!--md-colspan="1"-->
+                    <!--class="yellow"-->
+                    <!--ng-click="sliderNavEvent('All Classes', 'test1')">-->
+                <!--<md-icon md-svg-src="modules/core/img/side/test1.svg"></md-icon>-->
+                <!--<md-grid-tile-footer><h3>[TEST] 애니1</h3></md-grid-tile-footer>-->
+            <!--</md-grid-tile>-->
+            <!--<md-grid-tile-->
+                    <!--id="test2"-->
+                    <!--md-rowspan="1"-->
+                    <!--md-colspan="1"-->
+                    <!--class="red"-->
+                    <!--ng-click="sliderNavEvent('All Classes', 'test2')">-->
+                <!--<md-icon md-svg-src="modules/core/img/side/notification.svg"></md-icon>-->
+                <!--<md-grid-tile-footer><h3>[TEST] 애니2</h3></md-grid-tile-footer>-->
+            <!--</md-grid-tile>-->
         </md-grid-list>
     </md-content>
 </div>

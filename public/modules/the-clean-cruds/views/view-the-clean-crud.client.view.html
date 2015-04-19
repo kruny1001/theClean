@@ -1,28 +1,39 @@
 <section class="headerEnabled" data-ng-controller="TheCleanCrudsController" data-ng-init="findOne()">
-	<div class="page-header">
-		<h1 data-ng-bind="theCleanCrud.name"></h1>
-	</div>
-	<div class="pull-right" data-ng-show="((authentication.user) && (authentication.user._id == theCleanCrud.user._id))">
-		<a class="btn btn-primary" href="/#!/the-clean-cruds/{{theCleanCrud._id}}/edit">
-			<i class="glyphicon glyphicon-edit"></i>
-		</a>
-		<a class="btn btn-primary" data-ng-click="remove();">
-			<i class="glyphicon glyphicon-trash"></i>
-		</a>
-	</div>
-	<small>
-		<em class="text-muted">
-			Posted on
-			<span data-ng-bind="theCleanCrud.created | date:'mediumDate'"></span>
-			by
-			<span data-ng-bind="theCleanCrud.user.displayName"></span>
-		</em>
+	<!--<div class="page-header">-->
+		<!--<h1 data-ng-bind="theCleanCrud.name"></h1>-->
+	<!--</div>-->
 
-        <div>{{theCleanCrud.orderDate}}</div>
-        <div>{{theCleanCrud.deliberyDate}}</div>
-        <div>{{theCleanCrud.Address}}</div>
-        <div>{{theCleanCrud.numOrder}}</div>
-        <div>{{theCleanCrud.detailInfo}}</div>
+    <md-whiteframe flex="" class="md-whiteframe-z2 home-card ob-underbar-green"
+                   layout="column" layout-align="space-around start">
+        <div class="pull-right" data-ng-show="((authentication.user) && (authentication.user._id == theCleanCrud.user._id))">
+            <a class="btn btn-primary" href="/#!/the-clean-cruds/{{theCleanCrud._id}}/edit">
+                <i class="glyphicon glyphicon-edit"></i>
+            </a>
+            <a class="btn btn-primary" data-ng-click="remove();">
+                <i class="glyphicon glyphicon-trash"></i>
+            </a>
+        </div>
+        <small>
+            <em class="text-muted">
+                주문날짜:
+                <span data-ng-bind="theCleanCrud.created | date:'mediumDate'"></span>
+                사용자 이름:
+                <span data-ng-bind="theCleanCrud.user.name"></span>
+            </em>
+            <br/>
+        </small>
+        <div row="column" style="  width: 100%;">
+            <div layout="row">
+                <label flex="20">주소: </label><div>{{theCleanCrud.Address}}</div>
+            </div>
+            <div layout="row">
+                <label flex="20">금액: </label><div>{{theCleanCrud.numOrder * 900}}원</div>
+            </div>
+            <div layout="row">
+                <label flex="20">상세정보: </label><div>{{theCleanCrud.detailInfo}}</div>
+            </div>
+        </div>
 
-	</small>
+    </md-whiteframe>
+
 </section>

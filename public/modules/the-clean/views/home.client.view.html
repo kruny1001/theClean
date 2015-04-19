@@ -2,7 +2,7 @@
     4/8 Create
 -->
 <section data-ng-controller="HomeController">
-    <md-content ng-show="tcStartPage">
+    <md-content class="home-background" ng-show="tcStartPage">
 
         <!--<iframe height='250' scrolling='no' src='//codepen.io/kruny1001/embed/yyRMZm/?height=206' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='http://codepen.io/kruny1001/pen/yyRMZm/'>yyRMZm</a> by Kevin S (<a href='http://codepen.io/kruny1001'>@kruny1001</a>) on <a href='http://codepen.io'>CodePen</a>.-->
         <!--</iframe>-->
@@ -40,7 +40,8 @@
         <!--</md-icon>-->
         <!--</div>-->
 
-        <div layout="row" layout-sm="column" layout-align="center center">
+        <div id="demo"></div>
+        <div hide-sm layout="row" layout-sm="column" layout-align="center center">
             <md-card style="max-width:250px;" class=" ob-underbar-top-red">
                 <div style="width:80%; margin-left:auto; margin-right:auto;">
                     <md-icon md-svg-icon="basket"
@@ -48,7 +49,7 @@
                     </md-icon>
                 </div>
                 <md-card-content class="home-card">
-                    <h2>빨래바구니</h2>
+                    <h2 class="md-title">빨래바구니</h2>
                     <p>
                         빨래바구니에 빨래거리를 담아 주세요.
                     </p>
@@ -61,7 +62,7 @@
                     </md-icon>
                 </div>
                 <md-card-content class="home-card">
-                    <h2>세탁일</h2>
+                    <h2 class="md-title">세탁일</h2>
                     <p>
                         세탁은 The Clean에 맞겨 주시면 배달까지
                     </p>
@@ -74,7 +75,7 @@
                     </md-icon>
                 </div>
                 <md-card-content class="home-card ">
-                    <h2>진행상태</h2>
+                    <h2 class="md-title">진행상태</h2>
                     <p>
                         진행상태에 대해서 알려 드립니다. 실시간 업데이트
                     </p>
@@ -83,22 +84,22 @@
         </div>
         <md-whiteframe flex="" class="md-whiteframe-z2 home-card ob-underbar-dark"
                        layout="column" layout-align="space-around start">
-            <h3>간편한 결제 시스템</h3>
+            <h3 class="md-title">간편한 결제 시스템</h3>
         </md-whiteframe>
 
         <md-whiteframe flex="" class="md-whiteframe-z2 home-card ob-underbar-base"
                        layout="column" layout-align="space-around start">
-            <h3>실시간 업데이</h3>
+            <h3 class="md-title">실시간 업데이</h3>
         </md-whiteframe>
 
         <md-whiteframe flex="" class="md-whiteframe-z2 home-card ob-underbar-green"
                        layout="column" layout-align="space-around start">
-            <h3>합리적 가격</h3>
+            <h3 class="md-title">합리적 가격</h3>
         </md-whiteframe>
 
         <md-whiteframe flex="" class="md-whiteframe-z2 home-card ob-underbar-red"
                        layout="column" layout-align="space-around start">
-            <h3>고객 만족 서비스</h3>
+            <h3 class="md-title">고객 만족 서비스</h3>
         </md-whiteframe>
     </md-content>
 </section>

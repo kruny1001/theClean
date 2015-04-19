@@ -1,24 +1,25 @@
 <section class="headerEnabled container tc-main-font" data-ng-controller="TheCleanController">
 
-    <div id="text" style="display:block"><h1><strong>The Clean Project</strong></h1></div>
+    <div id="text" style="display:block"><h1 class="md-display-1"><strong>The Clean Project</strong></h1></div>
 
-    <div layout="row" layout-sm="column"layout-margin style="font-size:12px;" layout-align="center center">
-        <!--<div flex flex-order="1">-->
-            <!--<md-button class="md-warn md-raised md-hue-3" ng-click="tcProgress = toggle(tcProgress)"><strong>Progress {{tcProgress}}</strong></md-button>-->
+    <!--<div layout="row" layout-sm="column"layout-margin class="md-body-1" layout-align="center center">-->
+        <!--&lt;!&ndash;<div flex flex-order="1">&ndash;&gt;-->
+            <!--&lt;!&ndash;<md-button class="md-warn md-raised md-hue-3" ng-click="tcProgress = toggle(tcProgress)"><strong>Progress {{tcProgress}}</strong></md-button>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--<div flex flex-order="2">-->
+            <!--<md-button class="md-warn md-raised md-hue-1" ng-click="tcOrder = toggle(tcOrder)"><strong>주문인터페이스 {{tcOrder}}</strong></md-button>-->
         <!--</div>-->
-        <div flex flex-order="2">
-            <md-button class="md-warn md-raised md-hue-1" ng-click="tcOrder = toggle(tcOrder)"><strong>주문인터페이스 {{tcOrder}}</strong></md-button>
-        </div>
-        <div flex flex-order="3">
-            <md-button class="md-warn md-raised md-hue-2" ng-click="tcStartPage = toggle(tcStartPage)"><strong>시작페이지 {{tcStartPage}}</strong></md-button>
-        </div>
-        <div flex flex-order="4">
-            <md-button  ng-disabled="true" class="md-warn md-raised md-hue-3" ng-click="tcPrice = toggle(tcPrice)"><strong>가격표 {{tcPrice}}</strong></md-button>
-        </div>
-    </div>
+        <!--<div flex flex-order="3">-->
+            <!--<md-button class="md-warn md-raised md-hue-2" ng-click="tcStartPage = toggle(tcStartPage)"><strong>시작페이지 {{tcStartPage}}</strong></md-button>-->
+        <!--</div>-->
+        <!--<div flex flex-order="4">-->
+            <!--<md-button  ng-disabled="true" class="md-warn md-raised md-hue-3" ng-click="tcPrice = toggle(tcPrice)"><strong>가격표 {{tcPrice}}</strong></md-button>-->
+        <!--</div>-->
+    <!--</div>-->
 
-    <ani-ace ng-if="aceAction"></ani-ace>
-    <nvd3 options="options" data="data" ng-show="tcProgress"></nvd3>
+    <!--<ani-ace ng-if="aceAction"></ani-ace>-->
+
+    <!--<nvd3 options="options" data="data" ng-show="tcProgress"></nvd3>-->
 
     <md-content ng-show="tcStartPage">
         <iframe height='250' scrolling='no' src='//codepen.io/kruny1001/embed/yyRMZm/?height=206' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='http://codepen.io/kruny1001/pen/yyRMZm/'>yyRMZm</a> by Kevin S (<a href='http://codepen.io/kruny1001'>@kruny1001</a>) on <a href='http://codepen.io'>CodePen</a>.
@@ -45,7 +46,6 @@
                     </p>
                 </md-card-content>
             </md-card>
-
             <md-card style="max-width:250px; ">
                 <div style="width:80%; margin-left:auto; margin-right:auto;">
                     <md-icon md-svg-icon="drum"
@@ -77,27 +77,27 @@
 
     <md-whiteframe flex="" class="md-whiteframe-z2 home-card ob-underbar-dark"
                    layout="column" layout-align="space-around start">
-        <h3>간편한 결제 시스템</h3>
+        <h4 class="md-title">간편한 결제 시스템</h4>
     </md-whiteframe>
 
     <md-whiteframe flex="" class="md-whiteframe-z2 home-card ob-underbar-base"
                    layout="column" layout-align="space-around start">
-        <h3>실시간 업데이</h3>
+        <h4 class="md-title">실시간 업데이트</h4>
     </md-whiteframe>
 
     <md-whiteframe flex="" class="md-whiteframe-z2 home-card ob-underbar-green"
                    layout="column" layout-align="space-around start">
-        <h3>합리적 가격</h3>
+        <h4 class="md-title">합리적 가격</h4>
     </md-whiteframe>
 
     <md-whiteframe flex="" class="md-whiteframe-z2 home-card ob-underbar-red"
                    layout="column" layout-align="space-around start">
-        <h3>고객 만족 서비스</h3>
+        <h4 class="md-title">고객 만족 서비스</h4>
     </md-whiteframe>
 
     <md-whiteframe flex="" class="md-whiteframe-z2 home-card ob-underbar-yellow"
                    layout="column" layout-align="space-around start">
-        <h3>연락처</h3>
+        <h4 class="md-title">연락처</h4>
     </md-whiteframe>
 
     <tc-order class="tc-order-ui" ng-show="tcOrder" user-info="authentication" ></tc-order>
