@@ -24,18 +24,21 @@
                 <div layout layout-sm="column">
                     <md-input-container flex>
                         <label>세탁수거</label>
-                        <input type="date" name="orderDate" ng-model="orderDate" disabled>
+                        <input type="date" name="orderDate" ng-model="orderDate">
                     </md-input-container>
                     <md-input-container flex>
                         <label>세탁도착</label>
                         <input type="date" name="deliberyDate" ng-model="deliberyDate">
                     </md-input-container>
                 </div>
-                <!--<md-input-container flex>-->
-                    <!--<label>Address</label>-->
-                    <!--<input ng-model="address" name="address" placeholder="주소를 적어 주세요">-->
-                <!--</md-input-container>-->
-
+                <md-input-container flex>
+                    <label>Address</label>
+                    <input ng-model="address" name="address" placeholder="주소를 적어 주세요">
+                </md-input-container>
+                <md-input-container flex>
+                    <label>연락처</label>
+                    <input ng-model="phone" name="phone" placeholder="">
+                </md-input-container>
                 <div layout layout-sm="column">
                     <md-input-container flex>
                         <label>세탁수량</label>
@@ -47,6 +50,7 @@
                         <!--</div>-->
                     </md-input-container>
 
+
                 <md-input-container flex>
                     <label>총금</label>
                     <input required type="number" step="any" name="price" ng-model="price" disabled>
@@ -57,6 +61,8 @@
                     <!--</div>-->
                 </md-input-container>
                 </div>
+                <md-button style="width:100px;"class="md-primary md-raised" ng-click="numOrder++">+</md-button>
+                <md-button style="width:100px;" class="md-primary md-raised" ng-click="numOrder--">-</md-button>
 
                 <md-input-container flex>
                     <label>상세주문요청</label>

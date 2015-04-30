@@ -2,6 +2,7 @@
     <md-whiteframe flex="" class="md-whiteframe-z2 home-card ob-underbar-dark"
                    layout="column" layout-align="space-around center">
         <h3 class="md-title"><b>프로필 수정하기</b></h3>
+        <md-button class="md-button md-primiary" ng-click="openPwChange()">Change Password</md-button>
         <div layout=row>
             <form name="userForm" data-ng-submit="updateUserProfile(userForm.$valid)" class="signin form-horizontal" autocomplete="off">
                 <fieldset>

@@ -1,0 +1,10 @@
+<section data-ng-controller="AddressController">
+	This is the Address
+	<md-button class="md-body-1 md-primary"
+			   ng-click="searchAddress()">검색하기</md-button>
+
+	<div ng-repeat="addr in addresses">
+		<div>{{addr.address.base}} {{addr.address.old}} ({{addr.address.new}}) {{addr.address.building}}</div>
+	</div>
+
+</section>

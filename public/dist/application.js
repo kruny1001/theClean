@@ -46,6 +46,11 @@ angular.element(document).ready(function() {
 });
 'use strict';
 
+// Use application configuration module to register a new module
+ApplicationConfiguration.registerModule('address');
+
+'use strict';
+
 // Use Application configuration module to register a new module
 ApplicationConfiguration.registerModule('articles');
 
@@ -72,6 +77,44 @@ ApplicationConfiguration.registerModule('the-clean');
 
 // Use Application configuration module to register a new module
 ApplicationConfiguration.registerModule('users');
+'use strict';
+
+//Setting up route
+angular.module('address').config(['$stateProvider',
+	function($stateProvider) {
+		// Address state routing
+		$stateProvider.
+		state('address', {
+			url: '/address',
+			templateUrl: 'modules/address/views/address.client.view.html'
+		});
+	}
+]);
+'use strict';
+
+angular.module('address').controller('AddressController',addressCtrl);
+
+
+
+function addressCtrl($scope, $http) {
+	$scope.result=[];
+	$http.get('http://api.poesis.kr/post/search.php', {v:"2.5.0", q:"%EC%8B%A0%EC%A0%95%EB%8F%99"})
+		.success(function(data){
+			console.log(data);
+		});
+
+	console.log(encodeURI("신정동"));
+
+	$scope.searchAddress = function(){
+		var query = encodeURI("신정동");
+		$http.get('http://api.poesis.kr/post/search.php?v=2.5.0&q='+query)
+			.success(function(data){
+				$scope.addresses = data.results;
+			})
+	}
+}
+addressCtrl.$inject = ["$scope", "$http"];
+
 'use strict';
 
 // Configuring the Articles module
@@ -2200,10 +2243,13 @@ angular.module('users').controller('PasswordController', ['$scope', '$stateParam
 ]);
 'use strict';
 
-angular.module('users').controller('SettingsController', ['$scope', '$http', '$location', 'Users', 'Authentication',
-	function($scope, $http, $location, Users, Authentication) {
+angular.module('users').controller('SettingsController', ['$scope','$state', '$http', '$location', 'Users', 'Authentication',
+	function($scope,$state, $http, $location, Users, Authentication) {
 		$scope.user = Authentication.user;
 
+		$scope.openPwChange = function(){
+			$state.go('password');
+		};
 		// If user is not signed in then redirect back home
 		if (!$scope.user) $location.path('/');
 

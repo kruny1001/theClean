@@ -1,9 +1,12 @@
 'use strict';
 
-angular.module('users').controller('SettingsController', ['$scope', '$http', '$location', 'Users', 'Authentication',
-	function($scope, $http, $location, Users, Authentication) {
+angular.module('users').controller('SettingsController', ['$scope','$state', '$http', '$location', 'Users', 'Authentication',
+	function($scope,$state, $http, $location, Users, Authentication) {
 		$scope.user = Authentication.user;
 
+		$scope.openPwChange = function(){
+			$state.go('password');
+		};
 		// If user is not signed in then redirect back home
 		if (!$scope.user) $location.path('/');
 

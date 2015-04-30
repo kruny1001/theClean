@@ -52,7 +52,11 @@
 
 	<!--Embedding The User Object-->
 	<script type="text/javascript">
-        var user = {{ user | json | safe }};
+		var user = {
+		{
+			user | json | safe
+		};
+		}
 	</script>
 
 	<script src="//ajax.googleapis.com/ajax/libs/webfont/1.5.10/webfont.js"></script>
@@ -64,6 +68,10 @@
 	{% for jsFile in jsFiles %}
 		<script type="text/javascript" src="{{jsFile}}"></script>
 	{% endfor %}
+
+	<!-- address API -->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+	<script src="//cdn.poesis.kr/post/popup.min.js"></script>
 
 	{% if process.env.NODE_ENV === 'development' %}
 	<!--Livereload script rendered -->

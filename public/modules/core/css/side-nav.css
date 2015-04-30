@@ -49,3 +49,7 @@
     font-weight: 700;
     width: 100%;
     text-align: center; }
+
+.sideNavTiles md-grid-tile{
+    cursor: pointer;
+}
