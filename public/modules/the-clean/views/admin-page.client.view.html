@@ -3,17 +3,35 @@
                    layout="column" layout-align="space-around start">
         <h2>Admin Page</h2>
     </md-whiteframe>
-    <md-whiteframe flex="" class="md-whiteframe-z2 home-card ob-underbar-red"
+    <div layout="row">
+        <md-whiteframe flex="" class="md-whiteframe-z2 home-card ob-underbar-red"
+                       layout="column" layout-align="space-around start">
+            <h2 class="md-title">주문현황: {{numOrder}}개</h2>
+            <div ng-repeat="order in orders">
+                <h6>{{order.name}}-{{order.Address}}-{{order.detailInfo}}</h6>
+            </div>
+        </md-whiteframe>
+
+        <md-whiteframe flex="" class="md-whiteframe-z2 home-card ob-underbar-red"
+                       layout="column" layout-align="space-around start">
+            <h2 class="md-title">사용자리스트: {{numUser}}명</h2>
+            <div ng-repeat="user in users">
+                <h5>{{user.username}}-{{user.email}}</h5>
+            </div>
+        </md-whiteframe>
+    </div>
+
+    <md-whiteframe flex="" class="md-whiteframe-z2 home-card ob-underbar-green"
                    layout="column" layout-align="space-around start">
-        <h2>주문현황: {{numOrder}}개</h2>
-        <div ng-repeat="order in orders">
-            <h6>{{order.name}}-{{order.Address}}-{{order.detailInfo}}</h6>
+        <h2 class="md-title">사용자리스트: {{numUser}}명</h2>
+        <div ng-repeat="user in users">
+            <h5>{{user.username}}-{{user.email}}</h5>
         </div>
     </md-whiteframe>
 
-    <md-whiteframe flex="" class="md-whiteframe-z2 home-card ob-underbar-red"
+    <md-whiteframe flex="" class="md-whiteframe-z2 home-card ob-underbar-green"
                    layout="column" layout-align="space-around start">
-        <h2>사용자리스트</h2>
+        <h2 class="md-title">빨래방 리스트: {{numUser}}명</h2>
         <div ng-repeat="user in users">
             <h5>{{user.username}}-{{user.email}}</h5>
         </div>

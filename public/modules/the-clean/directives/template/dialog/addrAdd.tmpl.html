@@ -1,0 +1,27 @@
+<md-dialog aria-label="Mango (Fruit)" style="overflow-y: auto;">
+    <form>
+        <md-dialog-content class="sticky-container">
+            <md-toolbar class="md-theme-light">
+                <h2 class="md-toolbar-tools md-title">
+                    <span><b>주소를 넣어 주세요</b></span>
+                </h2>
+            </md-toolbar>
+            <md-subheader class="md-sticky-no-effect"></md-subheader>
+            <div>
+                <p>
+                    저희 서비스를 처음으로 이용해주셔서 감사 합니다.
+                    주소를 입력 하여 주세요
+                </p>
+            </div>
+        </md-dialog-content>
+        <div class="md-actions" layout="row">
+
+            <md-button ng-click="answer('not useful')" class="md-primary">
+                <b>최소하기</b>
+            </md-button>
+            <md-button ng-click="answer('useful')" class="md-primary">
+                <b>확인</b>
+            </md-button>
+        </div>
+    </form>
+</md-dialog>

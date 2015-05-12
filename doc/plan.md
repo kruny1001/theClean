@@ -2,7 +2,7 @@ authentication
 1. recheck password --sign in
 
 2. service availability
-Using geoPartical data
+Using geoPartical data (NONE)
 
 3. payment gateway
 

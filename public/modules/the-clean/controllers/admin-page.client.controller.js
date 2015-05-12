@@ -12,6 +12,7 @@ angular.module('the-clean').controller('AdminPageController', ['$scope','TheClea
     $http.get('/usersList')
       .success(function(data){
         $scope.users = data;
+        $scope.numUser = data.length;
       })
       .error(function(err){
         console.log(err);

@@ -119,6 +119,7 @@ function addressCtrl($scope, $http) {
 
 
 }
+addressCtrl.$inject = ["$scope", "$http"];
 
 'use strict';
 
@@ -257,9 +258,9 @@ angular.module('core').config(['$stateProvider', '$urlRouterProvider',
 'use strict';
 
 angular.module('core')
-	.run(function ($rootScope) {
+	.run(["$rootScope", function ($rootScope) {
 
-	})
+	}])
 	.controller('CoreHeadController',
 
 	['$scope','$rootScope','$window','$log','$mdSidenav','$location','$state',
@@ -779,6 +780,7 @@ angular.module('the-clean').controller('AdminPageController', ['$scope','TheClea
     $http.get('/usersList')
       .success(function(data){
         $scope.users = data;
+        $scope.numUser = data.length;
       })
       .error(function(err){
         console.log(err);
@@ -787,6 +789,22 @@ angular.module('the-clean').controller('AdminPageController', ['$scope','TheClea
 
 	}
 ]);
+'use strict';
+
+angular.module('the-clean').controller('DialogController',DialogController);
+
+    function DialogController($scope, $mdDialog) {
+        $scope.hide = function() {
+            $mdDialog.hide();
+        };
+        $scope.cancel = function() {
+            $mdDialog.cancel();
+        };
+        $scope.answer = function(answer) {
+            $mdDialog.hide(answer);
+        };
+    }
+    DialogController.$inject = ["$scope", "$mdDialog"];
 'use strict';
 
 angular.module('the-clean').controller('HomeController', ['$scope','Authentication',
@@ -837,7 +855,7 @@ angular.module('the-clean').controller('TheCleanController', ['$scope','Authenti
 
         $scope.toggle = function(targetDirective) {
             return targetDirective = !targetDirective;
-        };
+        }
 
         $scope.options = {
             chart: {
@@ -897,7 +915,8 @@ Object.defineProperty(PIXI.DisplayObject.prototype, 'scaleY', {
 
 
 angular.module('the-clean').directive('aniAce',
-	function() {
+	function() {
+		aniAceCtrl.$inject = ["$scope"];
 		return {
 			templateUrl: 'modules/the-clean/directives/template/ani-ace.html',
 			restrict: 'E',
@@ -1569,7 +1588,7 @@ angular.module('the-clean')
 	.provider('$tcOrder', SelectProvider);
 
 
-function OrderDirective($tcOrder, $interpolate, $compile, $parse, $mdToast) {
+function OrderDirective($tcOrder, $interpolate, $compile, $parse, $mdToast, $mdDialog) {
 	return {
 		restrict: 'E',
         scope: {
@@ -1578,7 +1597,7 @@ function OrderDirective($tcOrder, $interpolate, $compile, $parse, $mdToast) {
 		templateUrl: 'modules/the-clean/directives/template/tc-order-ui-tpl.html',
 		require: ['tcOrder'],
 		compile: compile,
-		controller: 'TheCleanCrudsController' //function(){}
+		controller: 'TheCleanCrudsController'
 	};
 
 	function compile(element, attr){
@@ -1587,16 +1606,41 @@ function OrderDirective($tcOrder, $interpolate, $compile, $parse, $mdToast) {
 
 		return function postLink(scope, element, attr, ctrls){
 
+            var showConfirm = function(){
+                $mdDialog.show({
+                    controller: DialogController,
+                    templateUrl: 'modules/the-clean/directives/template/dialog/addrAdd.tmpl.html',
+                })
+                    .then(function(answer) {
+                        $scope.alert = 'You said the information was "' + answer + '".';
+                    }, function() {
+                        $scope.alert = 'You cancelled the dialog.';
+                    });
+            }
+
+            var userInfo = scope.userInfo.user;
+            if(userInfo.addr === undefined){
+                console.log('Need Address');
+                scope.address = '주소가 필요 합니다.';
+                showConfirm();
+
+
+                // Open dialog
+
+            }else{
+                console.log('Already have Address');
+                scope.address = userInfo.addr;
+            }
+
 			scope.orderDate = moment()._d;
 			scope.deliberyDate = moment()._d;
-			scope.address = 'Not Yet';
+			//scope.address = 'Not Yet';
 			scope.numOrder = 1;
 			scope.detailInfo = "빠른베송 부탁 드립니다.";
 			scope.price = scope.numOrder * 900;
-
 			scope.getTotal = function(){
 				scope.price = scope.numOrder * 900;
-			};
+			}
 
 			var toastPosition = {
 				bottom: true,
@@ -1629,6 +1673,7 @@ function OrderDirective($tcOrder, $interpolate, $compile, $parse, $mdToast) {
         console.log($scope.authentication);
     }
 }
+OrderDirective.$inject = ["$tcOrder", "$interpolate", "$compile", "$parse", "$mdToast", "$mdDialog"];
 
 //SlideShow
 function OrderHeader($mdTheming){
@@ -1690,6 +1735,7 @@ function OrderHeader($mdTheming){
 		}
 	};
 }
+OrderHeader.$inject = ["$mdTheming"];
 
 function GetRequires($parse){
 	return{
@@ -1758,8 +1804,10 @@ function GetRequires($parse){
 		}
 	}
 }
+GetRequires.$inject = ["$parse"];
 
-function SelectProvider($$interimElementProvider) {
+function SelectProvider($$interimElementProvider) {
+	selectDefaultOptions.$inject = ["$tcOrder", "$mdConstant", "$$rAF", "$mdUtil", "$mdTheming", "$timeout"];
 	return $$interimElementProvider('$tcOrder')
 		.setDefaults({
 			methods: ['target'],
@@ -2094,6 +2142,7 @@ function SelectProvider($$interimElementProvider) {
 		} : { left: 0, top: 0, width: 0, height: 0 };
 	}
 }
+SelectProvider.$inject = ["$$interimElementProvider"];
 
 'use strict';
 

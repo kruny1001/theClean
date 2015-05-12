@@ -30,7 +30,7 @@ angular.module('the-clean')
 	.provider('$tcOrder', SelectProvider);
 
 
-function OrderDirective($tcOrder, $interpolate, $compile, $parse, $mdToast) {
+function OrderDirective($tcOrder, $interpolate, $compile, $parse, $mdToast, $mdDialog) {
 	return {
 		restrict: 'E',
         scope: {
@@ -39,7 +39,7 @@ function OrderDirective($tcOrder, $interpolate, $compile, $parse, $mdToast) {
 		templateUrl: 'modules/the-clean/directives/template/tc-order-ui-tpl.html',
 		require: ['tcOrder'],
 		compile: compile,
-		controller: 'TheCleanCrudsController' //function(){}
+		controller: 'TheCleanCrudsController'
 	};
 
 	function compile(element, attr){
@@ -48,13 +48,38 @@ function OrderDirective($tcOrder, $interpolate, $compile, $parse, $mdToast) {
 
 		return function postLink(scope, element, attr, ctrls){
 
+            var showConfirm = function(){
+                $mdDialog.show({
+                    controller: DialogController,
+                    templateUrl: 'modules/the-clean/directives/template/dialog/addrAdd.tmpl.html',
+                })
+                    .then(function(answer) {
+                        $scope.alert = 'You said the information was "' + answer + '".';
+                    }, function() {
+                        $scope.alert = 'You cancelled the dialog.';
+                    });
+            }
+
+            var userInfo = scope.userInfo.user;
+            if(userInfo.addr === undefined){
+                console.log('Need Address');
+                scope.address = '주소가 필요 합니다.';
+                showConfirm();
+
+
+                // Open dialog
+
+            }else{
+                console.log('Already have Address');
+                scope.address = userInfo.addr;
+            }
+
 			scope.orderDate = moment()._d;
 			scope.deliberyDate = moment()._d;
-			scope.address = 'Not Yet';
+			//scope.address = 'Not Yet';
 			scope.numOrder = 1;
 			scope.detailInfo = "빠른베송 부탁 드립니다.";
 			scope.price = scope.numOrder * 900;
-
 			scope.getTotal = function(){
 				scope.price = scope.numOrder * 900;
 			}
