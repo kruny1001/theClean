@@ -1,0 +1,19 @@
+<section data-ng-controller="WorkplacesController" data-ng-init="find()">
+    <div class="page-header">
+        <h1>Workplaces</h1>
+    </div>
+    <div class="list-group">
+        <a data-ng-repeat="workplace in workplaces" data-ng-href="#!/workplaces/{{workplace._id}}" class="list-group-item">
+			<small class="list-group-item-text">
+				Posted on
+				<span data-ng-bind="workplace.created | date:'medium'"></span>
+				by
+				<span data-ng-bind="workplace.user.displayName"></span>
+			</small>
+			<h4 class="list-group-item-heading" data-ng-bind="workplace.name"></h4>
+        </a>
+    </div>
+    <div class="alert alert-warning text-center" data-ng-hide="!workplaces.$resolved || workplaces.length">
+    	No Workplaces yet, why don't you <a href="/#!/workplaces/create">create one</a>?
+    </div>
+</section>

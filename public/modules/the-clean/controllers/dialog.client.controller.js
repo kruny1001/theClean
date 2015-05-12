@@ -4,12 +4,13 @@ angular.module('the-clean').controller('DialogController',DialogController);
 
     function DialogController($scope, $mdDialog, $http) {
         $scope.selectAddr = "";
-        $scope.result = true;
+
+        $scope.result = false;
         $scope.searchAddress = function(){
             var query = encodeURI($scope.keyword);
             $http.get('http://api.poesis.kr/post/search.php?v=2.5.0&q='+query)
                 .success(function(data){
-                    if(data.error !== "")
+                    if(data.error !== "" || data.count ==0)
                         $scope.error = data.error;
                     else
                         $scope.addresses = data.results;
@@ -21,7 +22,7 @@ angular.module('the-clean').controller('DialogController',DialogController);
 
         $scope.updateAddress = function(selected){
             var addr = selected.address.base+ " "+ selected.address.old+" "+selected.address.new+" "+selected.address.building;
-            $scope.result = false;
+            $scope.result = true;
             $scope.basicAddr = addr;
         };
 
@@ -32,8 +33,12 @@ angular.module('the-clean').controller('DialogController',DialogController);
             $mdDialog.cancel();
         };
         $scope.answer = function(addr1, addr2) {
-            var addr = addr1 +' '+ addr2;
-            $mdDialog.hide(addr);
-
+            if(addr1 !== undefined){
+                var addr = addr1 +' '+ addr2;
+                $mdDialog.hide(addr);
+            }
+            else{
+                $mdDialog.cancel();
+            }
         };
     }

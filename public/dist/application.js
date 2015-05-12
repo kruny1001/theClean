@@ -79,6 +79,10 @@ ApplicationConfiguration.registerModule('the-clean');
 ApplicationConfiguration.registerModule('users');
 'use strict';
 
+// Use applicaion configuration module to register a new module
+ApplicationConfiguration.registerModule('workplaces');
+'use strict';
+
 //Setting up route
 angular.module('address').config(['$stateProvider',
 	function($stateProvider) {
@@ -766,10 +770,13 @@ angular.module('the-clean').config(['$stateProvider','$mdIconProvider',
 
 'use strict';
 
-angular.module('the-clean').controller('AdminPageController', ['$scope','TheCleanCruds','$http',
-	function($scope,TheCleanCruds,$http) {
-		// Admin page controller logic
-		// ...
+angular.module('the-clean').controller('AdminPageController', ['$scope','TheCleanCruds','$http','$state','Workplaces',
+	function($scope, TheCleanCruds, $http, $state, Workplaces) {
+
+        $scope.workplaces = Workplaces.query();
+        $scope.workplaces.$promise.then(function(result){
+            $scope.numPlaces = result.length;
+        });
         $scope.mainContents=[
             {title:'간편한 결제 시스템', body:''},
             {title:'실시간 업데이트', body:''},
@@ -791,8 +798,10 @@ angular.module('the-clean').controller('AdminPageController', ['$scope','TheClea
         console.log(err);
       });
 
-
-	}
+    $scope.goTo = function(name){
+        $state.go(name);
+    }
+}
 ]);
 'use strict';
 
@@ -800,12 +809,13 @@ angular.module('the-clean').controller('DialogController',DialogController);
 
     function DialogController($scope, $mdDialog, $http) {
         $scope.selectAddr = "";
-        $scope.result = true;
+
+        $scope.result = false;
         $scope.searchAddress = function(){
             var query = encodeURI($scope.keyword);
             $http.get('http://api.poesis.kr/post/search.php?v=2.5.0&q='+query)
                 .success(function(data){
-                    if(data.error !== "")
+                    if(data.error !== "" || data.count ==0)
                         $scope.error = data.error;
                     else
                         $scope.addresses = data.results;
@@ -817,7 +827,7 @@ angular.module('the-clean').controller('DialogController',DialogController);
 
         $scope.updateAddress = function(selected){
             var addr = selected.address.base+ " "+ selected.address.old+" "+selected.address.new+" "+selected.address.building;
-            $scope.result = false;
+            $scope.result = true;
             $scope.basicAddr = addr;
         };
 
@@ -828,9 +838,13 @@ angular.module('the-clean').controller('DialogController',DialogController);
             $mdDialog.cancel();
         };
         $scope.answer = function(addr1, addr2) {
-            var addr = addr1 +' '+ addr2;
-            $mdDialog.hide(addr);
-
+            if(addr1 !== undefined){
+                var addr = addr1 +' '+ addr2;
+                $mdDialog.hide(addr);
+            }
+            else{
+                $mdDialog.cancel();
+            }
         };
     }
     DialogController.$inject = ["$scope", "$mdDialog", "$http"];
@@ -1638,6 +1652,7 @@ function OrderDirective($tcOrder, $interpolate, $compile, $parse, $mdToast, $mdD
             var showConfirm = function(){
                 $mdDialog.show({
                     controller: DialogController,
+                    clickOutsideToClose: true,
                     templateUrl: 'modules/the-clean/directives/template/dialog/addrAdd.tmpl.html',
                 })
                     .then(function(answer) {
@@ -2210,6 +2225,10 @@ angular.module('users').config(['$stateProvider',
 	function($stateProvider) {
 		// Users state routing
 		$stateProvider.
+		state('user-list', {
+			url: '/user-list',
+			templateUrl: 'modules/users/views/user-list.client.view.html'
+		}).
 		state('profile', {
 			url: '/settings/profile',
 			templateUrl: 'modules/users/views/settings/edit-profile.client.view.html'
@@ -2416,6 +2435,23 @@ angular.module('users').controller('SettingsController', ['$scope','$state', '$h
 ]);
 'use strict';
 
+angular.module('users').controller('UserListController', UserListController);
+	function UserListController($scope, $http) {
+		// User list controller logic
+		// ...
+        $http.get('/usersList')
+            .success(function(data){
+                $scope.users = data;
+                $scope.numUser = data.length;
+            })
+            .error(function(err){
+                console.log(err);
+            });
+	}
+	UserListController.$inject = ["$scope", "$http"];
+
+'use strict';
+
 // Authentication service for user variables
 angular.module('users').factory('Authentication', ['$window', function($window) {
 	var auth = {
@@ -2431,6 +2467,110 @@ angular.module('users').factory('Authentication', ['$window', function($window) 
 angular.module('users').factory('Users', ['$resource',
 	function($resource) {
 		return $resource('users', {}, {
+			update: {
+				method: 'PUT'
+			}
+		});
+	}
+]);
+'use strict';
+
+//Setting up route
+angular.module('workplaces').config(['$stateProvider',
+	function($stateProvider) {
+		// Workplaces state routing
+		$stateProvider.
+		state('listWorkplaces', {
+			url: '/workplaces',
+			templateUrl: 'modules/workplaces/views/list-workplaces.client.view.html'
+		}).
+		state('createWorkplace', {
+			url: '/workplaces/create',
+			templateUrl: 'modules/workplaces/views/create-workplace.client.view.html'
+		}).
+		state('viewWorkplace', {
+			url: '/workplaces/:workplaceId',
+			templateUrl: 'modules/workplaces/views/view-workplace.client.view.html'
+		}).
+		state('editWorkplace', {
+			url: '/workplaces/:workplaceId/edit',
+			templateUrl: 'modules/workplaces/views/edit-workplace.client.view.html'
+		});
+	}
+]);
+'use strict';
+
+// Workplaces controller
+angular.module('workplaces').controller('WorkplacesController', ['$scope', '$stateParams', '$location', 'Authentication', 'Workplaces',
+	function($scope, $stateParams, $location, Authentication, Workplaces) {
+		$scope.authentication = Authentication;
+
+		// Create new Workplace
+		$scope.create = function() {
+			// Create new Workplace object
+			var workplace = new Workplaces ({
+				name: this.name
+			});
+
+			// Redirect after save
+			workplace.$save(function(response) {
+				$location.path('workplaces/' + response._id);
+
+				// Clear form fields
+				$scope.name = '';
+			}, function(errorResponse) {
+				$scope.error = errorResponse.data.message;
+			});
+		};
+
+		// Remove existing Workplace
+		$scope.remove = function(workplace) {
+			if ( workplace ) { 
+				workplace.$remove();
+
+				for (var i in $scope.workplaces) {
+					if ($scope.workplaces [i] === workplace) {
+						$scope.workplaces.splice(i, 1);
+					}
+				}
+			} else {
+				$scope.workplace.$remove(function() {
+					$location.path('workplaces');
+				});
+			}
+		};
+
+		// Update existing Workplace
+		$scope.update = function() {
+			var workplace = $scope.workplace;
+
+			workplace.$update(function() {
+				$location.path('workplaces/' + workplace._id);
+			}, function(errorResponse) {
+				$scope.error = errorResponse.data.message;
+			});
+		};
+
+		// Find a list of Workplaces
+		$scope.find = function() {
+			$scope.workplaces = Workplaces.query();
+		};
+
+		// Find existing Workplace
+		$scope.findOne = function() {
+			$scope.workplace = Workplaces.get({ 
+				workplaceId: $stateParams.workplaceId
+			});
+		};
+	}
+]);
+'use strict';
+
+//Workplaces service used to communicate Workplaces REST endpoints
+angular.module('workplaces').factory('Workplaces', ['$resource',
+	function($resource) {
+		return $resource('workplaces/:workplaceId', { workplaceId: '@_id'
+		}, {
 			update: {
 				method: 'PUT'
 			}

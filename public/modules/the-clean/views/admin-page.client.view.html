@@ -8,7 +8,7 @@
                        layout="column" layout-align="space-around start">
             <div layout="row" layout-align="center center">
                 <h2 class="md-title admin-header">주문현황: {{numOrder}}개</h2>
-                <md-button class="md-raised">전체보기</md-button>
+                <md-button class="md-raised" ng-click="goTo('listTheCleanCruds')">전체보기</md-button>
             </div>
 
             <div ng-repeat="order in orders">
@@ -20,35 +20,24 @@
                        layout="column" layout-align="space-around start">
             <div layout="row" layout-align="center center">
                 <h2 class="md-title admin-header">사용자리스트: {{numUser}}명</h2>
-                <md-button class="md-raised">전체보기</md-button>
+                <md-button class="md-raised" ng-click="goTo('user-list')">전체보기</md-button>
             </div>
 
             <div ng-repeat="user in users">
-                <h5>{{user.username}}-{{user.email}}</h5>
+                <p class="md-caption">{{user.username}}-{{user.email}}</p>
             </div>
         </md-whiteframe>
     </div>
 
-    <md-whiteframe flex="" class="md-whiteframe-z2 home-card ob-underbar-green"
-                   layout="column" layout-align="space-around start">
-        <div layout="row" layout-align="center center">
-            <h2 class="md-title admin-header">사용자리스트: {{numUser}}명</h2>
-            <md-button class="md-raised">전체보기</md-button>
-        </div>
-        <div ng-repeat="user in users">
-            <h5>{{user.username}}-{{user.email}}</h5>
-        </div>
-    </md-whiteframe>
-
     <md-whiteframe flex="" class="md-whiteframe-z2 home-card ob-underbar-base"
                    layout="column" layout-align="space-around start">
         <div layout="row" layout-align="center center">
-            <h2 class="md-title admin-header">빨래방 리스트: {{numUser}}명</h2>
-            <md-button class="md-raised">전체보기</md-button>
+            <h2 class="md-title admin-header">빨래방 리스트: {{numPlaces}}곳</h2>
+            <md-button class="md-raised" ng-click="goTo('listWorkplaces')">전체보기</md-button>
         </div>
-        <!--<div ng-repeat="user in users">-->
-            <!--<h5>{{user.username}}-{{user.email}}</h5>-->
-        <!--</div>-->
+        <div ng-repeat="place in workplaces">
+            <h5>{{place.name}}</h5>
+        </div>
     </md-whiteframe>
 
     <md-whiteframe flex="" class="md-whiteframe-z2 home-card ob-underbar-dark"

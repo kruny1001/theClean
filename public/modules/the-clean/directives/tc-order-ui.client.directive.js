@@ -51,6 +51,7 @@ function OrderDirective($tcOrder, $interpolate, $compile, $parse, $mdToast, $mdD
             var showConfirm = function(){
                 $mdDialog.show({
                     controller: DialogController,
+                    clickOutsideToClose: true,
                     templateUrl: 'modules/the-clean/directives/template/dialog/addrAdd.tmpl.html',
                 })
                     .then(function(answer) {
