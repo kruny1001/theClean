@@ -82,7 +82,6 @@ ApplicationConfiguration.registerModule('users');
 //Setting up route
 angular.module('address').config(['$stateProvider',
 	function($stateProvider) {
-		// Address state routing
 		$stateProvider.
 		state('address', {
 			url: '/address',
@@ -94,26 +93,32 @@ angular.module('address').config(['$stateProvider',
 
 angular.module('address').controller('AddressController',addressCtrl);
 
-
-
 function addressCtrl($scope, $http) {
-	$scope.result=[];
-	$http.get('http://api.poesis.kr/post/search.php', {v:"2.5.0", q:"%EC%8B%A0%EC%A0%95%EB%8F%99"})
-		.success(function(data){
-			console.log(data);
-		});
 
-	console.log(encodeURI("신정동"));
-
+	$scope.selectAddr = "";
+	$scope.result = true;
 	$scope.searchAddress = function(){
-		var query = encodeURI("신정동");
+		var query = encodeURI($scope.keyword);
 		$http.get('http://api.poesis.kr/post/search.php?v=2.5.0&q='+query)
 			.success(function(data){
-				$scope.addresses = data.results;
+				if(data.error !== "")
+					$scope.error = data.error;
+				else
+					$scope.addresses = data.results;
 			})
-	}
+			.error(function(err){
+				alert(err);
+			});
+	};
+
+	$scope.updateAddress = function(selected){
+		var addr = selected.address.base+ " "+ selected.address.old+" "+selected.address.new+" "+selected.address.building;
+		$scope.result = false;
+		$scope.basicAddr = addr;
+	};
+
+
 }
-addressCtrl.$inject = ["$scope", "$http"];
 
 'use strict';
 
@@ -252,9 +257,9 @@ angular.module('core').config(['$stateProvider', '$urlRouterProvider',
 'use strict';
 
 angular.module('core')
-	.run(["$rootScope", function ($rootScope) {
+	.run(function ($rootScope) {
 
-	}])
+	})
 	.controller('CoreHeadController',
 
 	['$scope','$rootScope','$window','$log','$mdSidenav','$location','$state',
@@ -762,14 +767,24 @@ angular.module('the-clean').config(['$stateProvider','$mdIconProvider',
 
 'use strict';
 
-angular.module('the-clean').controller('AdminPageController', ['$scope','TheCleanCruds',
-	function($scope,TheCleanCruds) {
+angular.module('the-clean').controller('AdminPageController', ['$scope','TheCleanCruds','$http',
+	function($scope,TheCleanCruds,$http) {
 		// Admin page controller logic
 		// ...
         $scope.orders = TheCleanCruds.query();
         $scope.orders.$promise.then(function(result){
             $scope.numOrder = result.length;
         });
+
+    $http.get('/usersList')
+      .success(function(data){
+        $scope.users = data;
+      })
+      .error(function(err){
+        console.log(err);
+      });
+
+
 	}
 ]);
 'use strict';
@@ -883,7 +898,6 @@ Object.defineProperty(PIXI.DisplayObject.prototype, 'scaleY', {
 
 angular.module('the-clean').directive('aniAce',
 	function() {
-		aniAceCtrl.$inject = ["$scope"];
 		return {
 			templateUrl: 'modules/the-clean/directives/template/ani-ace.html',
 			restrict: 'E',
@@ -1615,7 +1629,6 @@ function OrderDirective($tcOrder, $interpolate, $compile, $parse, $mdToast) {
         console.log($scope.authentication);
     }
 }
-OrderDirective.$inject = ["$tcOrder", "$interpolate", "$compile", "$parse", "$mdToast"];
 
 //SlideShow
 function OrderHeader($mdTheming){
@@ -1677,7 +1690,6 @@ function OrderHeader($mdTheming){
 		}
 	};
 }
-OrderHeader.$inject = ["$mdTheming"];
 
 function GetRequires($parse){
 	return{
@@ -1746,10 +1758,8 @@ function GetRequires($parse){
 		}
 	}
 }
-GetRequires.$inject = ["$parse"];
 
 function SelectProvider($$interimElementProvider) {
-	selectDefaultOptions.$inject = ["$tcOrder", "$mdConstant", "$$rAF", "$mdUtil", "$mdTheming", "$timeout"];
 	return $$interimElementProvider('$tcOrder')
 		.setDefaults({
 			methods: ['target'],
@@ -2084,7 +2094,6 @@ function SelectProvider($$interimElementProvider) {
 		} : { left: 0, top: 0, width: 0, height: 0 };
 	}
 }
-SelectProvider.$inject = ["$$interimElementProvider"];
 
 'use strict';
 

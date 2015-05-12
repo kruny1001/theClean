@@ -3,7 +3,6 @@
 //Setting up route
 angular.module('address').config(['$stateProvider',
 	function($stateProvider) {
-		// Address state routing
 		$stateProvider.
 		state('address', {
 			url: '/address',

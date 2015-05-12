@@ -1,20 +1,21 @@
 <section data-ng-controller="AdminPageController">
     <md-whiteframe flex="" class="md-whiteframe-z2 home-card ob-underbar-red"
                    layout="column" layout-align="space-around start">
-        Admin Page
+        <h2>Admin Page</h2>
     </md-whiteframe>
     <md-whiteframe flex="" class="md-whiteframe-z2 home-card ob-underbar-red"
                    layout="column" layout-align="space-around start">
-        주문현황: {{numOrder}}개
+        <h2>주문현황: {{numOrder}}개</h2>
+        <div ng-repeat="order in orders">
+            <h6>{{order.name}}-{{order.Address}}-{{order.detailInfo}}</h6>
+        </div>
     </md-whiteframe>
+
     <md-whiteframe flex="" class="md-whiteframe-z2 home-card ob-underbar-red"
                    layout="column" layout-align="space-around start">
-        회원관리: {{numUser}}개
+        <h2>사용자리스트</h2>
+        <div ng-repeat="user in users">
+            <h5>{{user.username}}-{{user.email}}</h5>
+        </div>
     </md-whiteframe>
-
-
-
-
-
-
 </section>

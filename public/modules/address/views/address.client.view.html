@@ -1,10 +1,13 @@
 <section data-ng-controller="AddressController">
-	This is the Address
-	<md-button class="md-body-1 md-primary"
-			   ng-click="searchAddress()">검색하기</md-button>
-
-	<div ng-repeat="addr in addresses">
-		<div>{{addr.address.base}} {{addr.address.old}} ({{addr.address.new}}) {{addr.address.building}}</div>
+	<input ng-model="keyword" type="text">
+	<md-button class="md-body-1 md-primary" ng-click="searchAddress()">검색하기</md-button>
+	{{error}}
+	<div class="md-caption" ng-if="result" ng-repeat="addr in addresses">
+		<md-button class="md-raised md-caption">{{$index}}:{{addr.address.base}} {{addr.address.old}} ({{addr.address.new}}) {{addr.address.building}}</md-button>
+		<md-button class="md-raised md-caption" ng-click="updateAddress(addr)">선택하기</md-button>
 	</div>
+
+	<input type="text" ng-model="basicAddr">
+	<input type="text" ng-model="completeAddr">
 
 </section>
