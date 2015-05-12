@@ -1,8 +1,20 @@
 'use strict';
 
-angular.module('users').controller('SettingsController', ['$scope','$state', '$http', '$location', 'Users', 'Authentication',
-	function($scope,$state, $http, $location, Users, Authentication) {
+angular.module('users').controller('SettingsController', ['$scope','$state', '$http', '$location', 'Users', 'Authentication','$mdDialog',
+	function($scope,$state, $http, $location, Users, Authentication,$mdDialog) {
 		$scope.user = Authentication.user;
+
+        $scope.showConfirm = function(){
+            $mdDialog.show({
+                controller: DialogController,
+                templateUrl: 'modules/the-clean/directives/template/dialog/addrAdd.tmpl.html',
+            })
+                .then(function(answer) {
+                    $scope.user.address = answer;
+                }, function() {
+                    $scope.alert = 'You cancelled the dialog.';
+                });
+        }
 
 		$scope.openPwChange = function(){
 			$state.go('password');

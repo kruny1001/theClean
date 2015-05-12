@@ -54,9 +54,9 @@ function OrderDirective($tcOrder, $interpolate, $compile, $parse, $mdToast, $mdD
                     templateUrl: 'modules/the-clean/directives/template/dialog/addrAdd.tmpl.html',
                 })
                     .then(function(answer) {
-                        $scope.alert = 'You said the information was "' + answer + '".';
+                        scope.address = answer;
                     }, function() {
-                        $scope.alert = 'You cancelled the dialog.';
+                        scope.alert = 'You cancelled the dialog.';
                     });
             }
 

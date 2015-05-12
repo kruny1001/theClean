@@ -12,14 +12,40 @@
                     저희 서비스를 처음으로 이용해주셔서 감사 합니다.
                     주소를 입력 하여 주세요
                 </p>
+
+                <div layout="row">
+                    <md-input-container md-no-float>
+                        <md-icon md-svg-src="modules/address/img/place.svg" style="display:inline-block;"></md-icon>
+                        <input style="margin-left:24px;" ng-model="keyword" placeholder="시 동(군 면 읍 리)">
+                    </md-input-container>
+                    <md-button class="md-raised md-primary" ng-click="searchAddress()">검색하기</md-button>
+                </div>
+                {{error}}
+                <div class="md-caption" ng-if="result" ng-repeat="addr in addresses">
+                    <md-button class="md-raised "><div class="md-caption">{{$index}}:{{addr.address.base}} {{addr.address.old}} ({{addr.address.new}}) {{addr.address.building}}</div></md-button>
+                    <md-button class="md-raised md-caption" ng-click="updateAddress(addr)"><div class="md-caption">선택하기</div></md-button>
+                </div>
+
+                <div layout layout-sm="column">
+                    <md-input-container flex>
+                        <label>기본주소</label>
+                        <input type="text" ng-model="basicAddr">
+
+                    </md-input-container>
+                    <md-input-container flex>
+                        <label>상세주소</label>
+                        <input type="text" ng-model="completeAddr">
+                    </md-input-container>
+                </div>
+
             </div>
         </md-dialog-content>
         <div class="md-actions" layout="row">
 
-            <md-button ng-click="answer('not useful')" class="md-primary">
+            <md-button ng-click="hide()" class="md-primary">
                 <b>최소하기</b>
             </md-button>
-            <md-button ng-click="answer('useful')" class="md-primary">
+            <md-button ng-click="answer(basicAddr, completeAddr)" class="md-primary">
                 <b>확인</b>
             </md-button>
         </div>

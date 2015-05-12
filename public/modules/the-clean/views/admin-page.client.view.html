@@ -1,12 +1,16 @@
 <section data-ng-controller="AdminPageController">
     <md-whiteframe flex="" class="md-whiteframe-z2 home-card ob-underbar-red"
                    layout="column" layout-align="space-around start">
-        <h2>Admin Page</h2>
+        <h2 class="md-title admin-header">관리자 페이지</h2>
     </md-whiteframe>
-    <div layout="row">
+    <div layout="row" layout-sm="column">
         <md-whiteframe flex="" class="md-whiteframe-z2 home-card ob-underbar-red"
                        layout="column" layout-align="space-around start">
-            <h2 class="md-title">주문현황: {{numOrder}}개</h2>
+            <div layout="row" layout-align="center center">
+                <h2 class="md-title admin-header">주문현황: {{numOrder}}개</h2>
+                <md-button class="md-raised">전체보기</md-button>
+            </div>
+
             <div ng-repeat="order in orders">
                 <h6>{{order.name}}-{{order.Address}}-{{order.detailInfo}}</h6>
             </div>
@@ -14,7 +18,11 @@
 
         <md-whiteframe flex="" class="md-whiteframe-z2 home-card ob-underbar-red"
                        layout="column" layout-align="space-around start">
-            <h2 class="md-title">사용자리스트: {{numUser}}명</h2>
+            <div layout="row" layout-align="center center">
+                <h2 class="md-title admin-header">사용자리스트: {{numUser}}명</h2>
+                <md-button class="md-raised">전체보기</md-button>
+            </div>
+
             <div ng-repeat="user in users">
                 <h5>{{user.username}}-{{user.email}}</h5>
             </div>
@@ -23,17 +31,40 @@
 
     <md-whiteframe flex="" class="md-whiteframe-z2 home-card ob-underbar-green"
                    layout="column" layout-align="space-around start">
-        <h2 class="md-title">사용자리스트: {{numUser}}명</h2>
+        <div layout="row" layout-align="center center">
+            <h2 class="md-title admin-header">사용자리스트: {{numUser}}명</h2>
+            <md-button class="md-raised">전체보기</md-button>
+        </div>
         <div ng-repeat="user in users">
             <h5>{{user.username}}-{{user.email}}</h5>
         </div>
     </md-whiteframe>
 
-    <md-whiteframe flex="" class="md-whiteframe-z2 home-card ob-underbar-green"
+    <md-whiteframe flex="" class="md-whiteframe-z2 home-card ob-underbar-base"
                    layout="column" layout-align="space-around start">
-        <h2 class="md-title">빨래방 리스트: {{numUser}}명</h2>
-        <div ng-repeat="user in users">
-            <h5>{{user.username}}-{{user.email}}</h5>
+        <div layout="row" layout-align="center center">
+            <h2 class="md-title admin-header">빨래방 리스트: {{numUser}}명</h2>
+            <md-button class="md-raised">전체보기</md-button>
+        </div>
+        <!--<div ng-repeat="user in users">-->
+            <!--<h5>{{user.username}}-{{user.email}}</h5>-->
+        <!--</div>-->
+    </md-whiteframe>
+
+    <md-whiteframe flex="" class="md-whiteframe-z2 home-card ob-underbar-dark"
+                   layout="column" layout-align="space-around start">
+        <h2 class="md-title admin-header">결제 리스트: {{numUser}}명</h2>
+        <!--<div ng-repeat="user in users">-->
+            <!--<h5>{{user.username}}-{{user.email}}</h5>-->
+        <!--</div>-->
+    </md-whiteframe>
+
+    <md-whiteframe flex="" class="md-whiteframe-z2 home-card ob-underbar-yellow"
+                   layout="column" layout-align="space-around start">
+        <h2 class="md-title admin-header"><b>메인화면 컨텐츠</b></h2>
+        <div ng-repeat="cnt in mainContents">
+            <h5 class="md-title">{{cnt.title}}</h5>
+            <p class="md-caption">{{cnt.body}}</p>
         </div>
     </md-whiteframe>
 </section>

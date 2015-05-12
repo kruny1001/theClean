@@ -36,6 +36,11 @@ var UserSchema = new Schema({
         trim: true,
         default:''
     },
+    address:{
+        type: String,
+        trim: true,
+        default:''
+    },
 	displayName: {
 		type: String,
 		trim: true

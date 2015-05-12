@@ -25,6 +25,4 @@ function addressCtrl($scope, $http) {
 		$scope.result = false;
 		$scope.basicAddr = addr;
 	};
-
-
 }

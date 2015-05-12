@@ -116,8 +116,6 @@ function addressCtrl($scope, $http) {
 		$scope.result = false;
 		$scope.basicAddr = addr;
 	};
-
-
 }
 addressCtrl.$inject = ["$scope", "$http"];
 
@@ -772,6 +770,13 @@ angular.module('the-clean').controller('AdminPageController', ['$scope','TheClea
 	function($scope,TheCleanCruds,$http) {
 		// Admin page controller logic
 		// ...
+        $scope.mainContents=[
+            {title:'간편한 결제 시스템', body:''},
+            {title:'실시간 업데이트', body:''},
+            {title:'합리적 가격', body:''},
+            {title:'고객 만족 서비스', body:''},
+
+        ];
         $scope.orders = TheCleanCruds.query();
         $scope.orders.$promise.then(function(result){
             $scope.numOrder = result.length;
@@ -793,18 +798,42 @@ angular.module('the-clean').controller('AdminPageController', ['$scope','TheClea
 
 angular.module('the-clean').controller('DialogController',DialogController);
 
-    function DialogController($scope, $mdDialog) {
+    function DialogController($scope, $mdDialog, $http) {
+        $scope.selectAddr = "";
+        $scope.result = true;
+        $scope.searchAddress = function(){
+            var query = encodeURI($scope.keyword);
+            $http.get('http://api.poesis.kr/post/search.php?v=2.5.0&q='+query)
+                .success(function(data){
+                    if(data.error !== "")
+                        $scope.error = data.error;
+                    else
+                        $scope.addresses = data.results;
+                })
+                .error(function(err){
+                    alert(err);
+                });
+        };
+
+        $scope.updateAddress = function(selected){
+            var addr = selected.address.base+ " "+ selected.address.old+" "+selected.address.new+" "+selected.address.building;
+            $scope.result = false;
+            $scope.basicAddr = addr;
+        };
+
         $scope.hide = function() {
             $mdDialog.hide();
         };
         $scope.cancel = function() {
             $mdDialog.cancel();
         };
-        $scope.answer = function(answer) {
-            $mdDialog.hide(answer);
+        $scope.answer = function(addr1, addr2) {
+            var addr = addr1 +' '+ addr2;
+            $mdDialog.hide(addr);
+
         };
     }
-    DialogController.$inject = ["$scope", "$mdDialog"];
+    DialogController.$inject = ["$scope", "$mdDialog", "$http"];
 'use strict';
 
 angular.module('the-clean').controller('HomeController', ['$scope','Authentication',
@@ -1612,9 +1641,9 @@ function OrderDirective($tcOrder, $interpolate, $compile, $parse, $mdToast, $mdD
                     templateUrl: 'modules/the-clean/directives/template/dialog/addrAdd.tmpl.html',
                 })
                     .then(function(answer) {
-                        $scope.alert = 'You said the information was "' + answer + '".';
+                        scope.address = answer;
                     }, function() {
-                        $scope.alert = 'You cancelled the dialog.';
+                        scope.alert = 'You cancelled the dialog.';
                     });
             }
 
@@ -2301,9 +2330,21 @@ angular.module('users').controller('PasswordController', ['$scope', '$stateParam
 ]);
 'use strict';
 
-angular.module('users').controller('SettingsController', ['$scope','$state', '$http', '$location', 'Users', 'Authentication',
-	function($scope,$state, $http, $location, Users, Authentication) {
+angular.module('users').controller('SettingsController', ['$scope','$state', '$http', '$location', 'Users', 'Authentication','$mdDialog',
+	function($scope,$state, $http, $location, Users, Authentication,$mdDialog) {
 		$scope.user = Authentication.user;
+
+        $scope.showConfirm = function(){
+            $mdDialog.show({
+                controller: DialogController,
+                templateUrl: 'modules/the-clean/directives/template/dialog/addrAdd.tmpl.html',
+            })
+                .then(function(answer) {
+                    $scope.user.address = answer;
+                }, function() {
+                    $scope.alert = 'You cancelled the dialog.';
+                });
+        }
 
 		$scope.openPwChange = function(){
 			$state.go('password');
