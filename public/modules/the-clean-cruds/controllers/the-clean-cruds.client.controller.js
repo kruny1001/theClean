@@ -5,7 +5,6 @@ angular.module('the-clean-cruds').controller('TheCleanCrudsController', ['$scope
 	function($scope, $stateParams, $location, Authentication, TheCleanCruds) {
 		$scope.authentication = Authentication;
 
-
 		// Create new The clean crud
 		$scope.create = function() {
 			// Create new The clean crud object

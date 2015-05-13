@@ -1,9 +1,21 @@
 'use strict';
 
 // Workplaces controller
-angular.module('workplaces').controller('WorkplacesController', ['$scope', '$stateParams', '$location', 'Authentication', 'Workplaces',
-	function($scope, $stateParams, $location, Authentication, Workplaces) {
+angular.module('workplaces').controller('WorkplacesController', ['$scope', '$stateParams', '$location', 'Authentication', 'Workplaces','$mdDialog',
+	function($scope, $stateParams, $location, Authentication, Workplaces, $mdDialog) {
 		$scope.authentication = Authentication;
+
+        $scope.showConfirm = function(){
+            $mdDialog.show({
+                controller: DialogController,
+                templateUrl: 'modules/the-clean/directives/template/dialog/addrAdd.tmpl.html',
+            })
+                .then(function(answer) {
+                    $scope.user.address = answer;
+                }, function() {
+                    $scope.alert = 'You cancelled the dialog.';
+                });
+        };
 
 		// Create new Workplace
 		$scope.create = function() {

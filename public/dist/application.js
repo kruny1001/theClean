@@ -660,7 +660,6 @@ angular.module('the-clean-cruds').controller('TheCleanCrudsController', ['$scope
 	function($scope, $stateParams, $location, Authentication, TheCleanCruds) {
 		$scope.authentication = Authentication;
 
-
 		// Create new The clean crud
 		$scope.create = function() {
 			// Create new The clean crud object
@@ -1663,17 +1662,14 @@ function OrderDirective($tcOrder, $interpolate, $compile, $parse, $mdToast, $mdD
             }
 
             var userInfo = scope.userInfo.user;
-            if(userInfo.addr === undefined){
+            if(userInfo.address === undefined){
                 console.log('Need Address');
                 scope.address = '주소가 필요 합니다.';
                 showConfirm();
-
-
                 // Open dialog
-
             }else{
                 console.log('Already have Address');
-                scope.address = userInfo.addr;
+                scope.address = userInfo.address;
             }
 
 			scope.orderDate = moment()._d;
@@ -2501,9 +2497,21 @@ angular.module('workplaces').config(['$stateProvider',
 'use strict';
 
 // Workplaces controller
-angular.module('workplaces').controller('WorkplacesController', ['$scope', '$stateParams', '$location', 'Authentication', 'Workplaces',
-	function($scope, $stateParams, $location, Authentication, Workplaces) {
+angular.module('workplaces').controller('WorkplacesController', ['$scope', '$stateParams', '$location', 'Authentication', 'Workplaces','$mdDialog',
+	function($scope, $stateParams, $location, Authentication, Workplaces, $mdDialog) {
 		$scope.authentication = Authentication;
+
+        $scope.showConfirm = function(){
+            $mdDialog.show({
+                controller: DialogController,
+                templateUrl: 'modules/the-clean/directives/template/dialog/addrAdd.tmpl.html',
+            })
+                .then(function(answer) {
+                    $scope.user.address = answer;
+                }, function() {
+                    $scope.alert = 'You cancelled the dialog.';
+                });
+        };
 
 		// Create new Workplace
 		$scope.create = function() {

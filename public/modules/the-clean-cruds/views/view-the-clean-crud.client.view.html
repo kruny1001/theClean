@@ -14,7 +14,7 @@
             </a>
         </div>
         <small>
-            <em class="text-muted">
+            <em class="text-muted md-caption">
                 주문날짜:
                 <span data-ng-bind="theCleanCrud.created | date:'mediumDate'"></span>
                 사용자 이름:
@@ -28,6 +28,9 @@
             </div>
             <div layout="row">
                 <label flex="20">금액: </label><div>{{theCleanCrud.numOrder * 900}}원</div>
+            </div>
+            <div layout="row">
+                <label flex="20">전화번호: </label><div>{{theCleanCrud.cell}}</div>
             </div>
             <div layout="row">
                 <label flex="20">상세정보: </label><div>{{theCleanCrud.detailInfo}}</div>

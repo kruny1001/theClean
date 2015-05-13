@@ -62,17 +62,14 @@ function OrderDirective($tcOrder, $interpolate, $compile, $parse, $mdToast, $mdD
             }
 
             var userInfo = scope.userInfo.user;
-            if(userInfo.addr === undefined){
+            if(userInfo.address === undefined){
                 console.log('Need Address');
                 scope.address = '주소가 필요 합니다.';
                 showConfirm();
-
-
                 // Open dialog
-
             }else{
                 console.log('Already have Address');
-                scope.address = userInfo.addr;
+                scope.address = userInfo.address;
             }
 
 			scope.orderDate = moment()._d;

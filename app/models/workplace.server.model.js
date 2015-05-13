@@ -16,6 +16,17 @@ var WorkplaceSchema = new Schema({
 		required: 'Please fill Workplace name',
 		trim: true
 	},
+    cell:{
+        type: String,
+        default: '',
+        required: '연락처를 입력해 주세요',
+        trim: true
+    },
+    address:{
+        type: String,
+        default:'',
+        trim: true
+    },
 	created: {
 		type: Date,
 		default: Date.now
